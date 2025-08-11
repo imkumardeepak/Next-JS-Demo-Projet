@@ -26,6 +26,7 @@ import {
 } from "@/components/ui/sidebar";
 import { Icons } from "@/components/icons";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export default function DashboardLayout({
   children,
@@ -79,7 +80,10 @@ export default function DashboardLayout({
         </SidebarContent>
         <SidebarFooter>
            <SidebarGroup>
-              <SidebarGroupLabel>User</SidebarGroupLabel>
+              <div className="flex justify-between items-center p-2">
+                <SidebarGroupLabel>User</SidebarGroupLabel>
+                <ThemeToggle />
+              </div>
               <SidebarMenu>
                  <SidebarMenuItem>
                     <SidebarMenuButton>
