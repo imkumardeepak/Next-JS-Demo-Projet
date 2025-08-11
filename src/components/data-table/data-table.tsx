@@ -48,8 +48,7 @@ interface DataTableProps<TData, TValue> {
     pageTitle: string;
     pageDescription: string;
     searchColumn: string;
-    addLabel?: string;
-    onAddClick?: () => void;
+    children?: React.ReactNode;
 }
 
 export function DataTable<TData extends {id: string}, TValue>({
@@ -59,8 +58,7 @@ export function DataTable<TData extends {id: string}, TValue>({
   pageTitle,
   pageDescription,
   searchColumn,
-  addLabel,
-  onAddClick,
+  children,
 }: DataTableProps<TData, TValue>) {
   const [rowSelection, setRowSelection] = React.useState({});
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
@@ -107,7 +105,9 @@ export function DataTable<TData extends {id: string}, TValue>({
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-           <DataTableToolbar table={table} searchColumn={searchColumn} addLabel={addLabel} onAddClick={onAddClick} />
+           <DataTableToolbar table={table} searchColumn={searchColumn}>
+             {children}
+           </DataTableToolbar>
           <DndContext
             sensors={sensors}
             collisionDetection={closestCenter}

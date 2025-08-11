@@ -2,7 +2,7 @@
 "use client";
 
 import type { Table } from "@tanstack/react-table";
-import { PlusCircle, XIcon } from "lucide-react";
+import { XIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { DataTableViewOptions } from "@/components/data-table/data-table-view-options";
@@ -10,15 +10,13 @@ import { DataTableViewOptions } from "@/components/data-table/data-table-view-op
 interface DataTableToolbarProps<TData> {
   table: Table<TData>;
   searchColumn: string;
-  addLabel?: string;
-  onAddClick?: () => void;
+  children?: React.ReactNode;
 }
 
 export function DataTableToolbar<TData>({
   table,
   searchColumn,
-  addLabel,
-  onAddClick,
+  children,
 }: DataTableToolbarProps<TData>) {
   const isFiltered = table.getState().columnFilters.length > 0;
 
@@ -46,12 +44,7 @@ export function DataTableToolbar<TData>({
       </div>
       <div className="flex items-center space-x-2">
         <DataTableViewOptions table={table} />
-        {addLabel && onAddClick && (
-            <Button size="sm" className="h-8" onClick={onAddClick}>
-                <PlusCircle className="mr-2 h-4 w-4" />
-                {addLabel}
-            </Button>
-        )}
+        {children}
       </div>
     </div>
   );
