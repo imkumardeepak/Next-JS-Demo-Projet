@@ -5,7 +5,7 @@ import { Icons } from "@/components/icons";
 export default function SignupPage() {
   return (
     <div className="container grid h-svh flex-col items-center justify-center lg:max-w-none lg:grid-cols-2 lg:px-0">
-       <div className="lg:p-8">
+       <div className="p-4 sm:p-8">
         <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
           <SignupForm />
         </div>

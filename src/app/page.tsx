@@ -20,7 +20,7 @@ export default function LoginPage() {
           </blockquote>
         </div>
       </div>
-      <div className="lg:p-8">
+      <div className="p-4 sm:p-8">
         <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
           <LoginForm />
         </div>

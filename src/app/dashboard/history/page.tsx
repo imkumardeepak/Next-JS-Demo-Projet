@@ -11,6 +11,14 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 
 const passHistory = [
   {
+    id: "pass_005",
+    type: "Monthly",
+    purchaseDate: "2024-06-01",
+    expiryDate: "2024-06-30",
+    price: 65.0,
+    status: "Active",
+  },
+  {
     id: "pass_004",
     type: "Monthly",
     purchaseDate: "2024-05-01",
@@ -52,30 +60,32 @@ export default function HistoryPage() {
         <CardDescription>A record of all your past pass purchases.</CardDescription>
       </CardHeader>
       <CardContent>
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Pass Type</TableHead>
-              <TableHead>Purchase Date</TableHead>
-              <TableHead>Expiry Date</TableHead>
-              <TableHead className="text-right">Price</TableHead>
-              <TableHead className="text-center">Status</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {passHistory.map((pass) => (
-              <TableRow key={pass.id}>
-                <TableCell className="font-medium">{pass.type}</TableCell>
-                <TableCell>{pass.purchaseDate}</TableCell>
-                <TableCell>{pass.expiryDate}</TableCell>
-                <TableCell className="text-right">${pass.price.toFixed(2)}</TableCell>
-                <TableCell className="text-center">
-                  <Badge variant="destructive">{pass.status}</Badge>
-                </TableCell>
+        <div className="overflow-x-auto">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Pass Type</TableHead>
+                <TableHead className="hidden sm:table-cell">Purchase Date</TableHead>
+                <TableHead className="hidden md:table-cell">Expiry Date</TableHead>
+                <TableHead className="text-right">Price</TableHead>
+                <TableHead className="text-center">Status</TableHead>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+            </TableHeader>
+            <TableBody>
+              {passHistory.map((pass) => (
+                <TableRow key={pass.id}>
+                  <TableCell className="font-medium">{pass.type}</TableCell>
+                  <TableCell className="hidden sm:table-cell">{pass.purchaseDate}</TableCell>
+                  <TableCell className="hidden md:table-cell">{pass.expiryDate}</TableCell>
+                  <TableCell className="text-right">${pass.price.toFixed(2)}</TableCell>
+                  <TableCell className="text-center">
+                    <Badge variant={pass.status === 'Active' ? 'default' : 'destructive'}>{pass.status}</Badge>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
       </CardContent>
     </Card>
   );

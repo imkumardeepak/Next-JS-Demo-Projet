@@ -41,8 +41,8 @@ export function PassSelection({ onPurchase }: PassSelectionProps) {
   return (
     <div className="flex flex-col items-center">
         <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold tracking-tight">Choose Your Pass</h2>
-            <p className="text-muted-foreground mt-2">Select a pass that fits your travel needs.</p>
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">Choose Your Pass</h2>
+            <p className="text-muted-foreground mt-2 max-w-md">Select a pass that fits your travel needs.</p>
         </div>
         <div className="grid w-full max-w-4xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {passOptions.map((option) => (

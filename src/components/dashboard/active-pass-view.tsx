@@ -65,33 +65,33 @@ export function ActivePassView({ pass, onExpire }: ActivePassViewProps) {
 
 
   return (
-    <Card className="w-full max-w-md mx-auto overflow-hidden shadow-2xl">
-      <CardHeader className="bg-primary text-primary-foreground p-6">
+    <Card className="w-full max-w-md mx-auto overflow-hidden shadow-lg md:shadow-2xl">
+      <CardHeader className="bg-primary text-primary-foreground p-4 md:p-6">
         <div className="flex items-center gap-4">
-            <Ticket className="h-8 w-8" />
-            <CardTitle className="text-2xl">Your Active Pass</CardTitle>
+            <Ticket className="h-6 w-6 md:h-8 md:w-8" />
+            <CardTitle className="text-xl md:text-2xl">Your Active Pass</CardTitle>
         </div>
       </CardHeader>
-      <CardContent className="p-6 text-center">
+      <CardContent className="p-4 md:p-6 text-center">
         <div className="mb-6">
           <Image
             src={qrUrl}
             alt="Your Pass QR Code"
             width={250}
             height={250}
-            className="mx-auto rounded-lg border-4 border-white shadow-md"
+            className="mx-auto rounded-lg border-4 border-white shadow-md w-48 h-48 sm:w-64 sm:h-64"
             data-ai-hint="qr code"
           />
         </div>
 
         <div className="space-y-4 text-left">
            <div className="flex items-center gap-4 p-3 bg-muted rounded-lg">
-                <Avatar>
+                <Avatar className="h-12 w-12">
                     <AvatarImage src={`https://placehold.co/100x100.png`} />
                     <AvatarFallback>{pass.userName.charAt(0)}</AvatarFallback>
                 </Avatar>
                 <div>
-                    <p className="font-semibold text-lg">{pass.userName}</p>
+                    <p className="font-semibold text-base md:text-lg">{pass.userName}</p>
                     <p className="text-sm text-muted-foreground">{pass.type} Pass</p>
                 </div>
             </div>
