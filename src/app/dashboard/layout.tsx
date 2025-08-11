@@ -9,6 +9,10 @@ import {
   LogOut,
   ScanLine,
   User,
+  Settings,
+  ChevronDown,
+  CreditCard,
+  UserCog,
 } from "lucide-react";
 import {
   Sidebar,
@@ -22,11 +26,15 @@ import {
   SidebarTrigger,
   SidebarFooter,
   SidebarGroup,
-  SidebarGroupLabel
+  SidebarGroupLabel,
+  SidebarMenuSub,
+  SidebarMenuSubButton,
+  SidebarMenuSubItem
 } from "@/components/ui/sidebar";
 import { Icons } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 
 export default function DashboardLayout({
   children,
@@ -35,6 +43,7 @@ export default function DashboardLayout({
 }) {
   const pathname = usePathname();
   const router = useRouter();
+  const [isSettingsOpen, setIsSettingsOpen] = React.useState(false);
 
   const handleLogout = () => {
     // In a real app, you'd clear session/token here
@@ -76,6 +85,42 @@ export default function DashboardLayout({
                 </SidebarMenuButton>
               </Link>
             </SidebarMenuItem>
+            
+            {/* Collapsible Settings Menu */}
+            <SidebarMenuItem>
+              <Collapsible open={isSettingsOpen} onOpenChange={setIsSettingsOpen}>
+                <CollapsibleTrigger asChild>
+                  <SidebarMenuButton className="justify-between" tooltip="Settings">
+                    <div className="flex items-center gap-2">
+                      <Settings />
+                      <span>Settings</span>
+                    </div>
+                    <ChevronDown className={`h-4 w-4 transition-transform ${isSettingsOpen ? 'rotate-180' : ''}`} />
+                  </SidebarMenuButton>
+                </CollapsibleTrigger>
+                <CollapsibleContent>
+                  <SidebarMenuSub>
+                    <SidebarMenuSubItem>
+                       <Link href="/dashboard/settings/profile" passHref legacyBehavior>
+                          <SidebarMenuSubButton isActive={pathname === "/dashboard/settings/profile"}>
+                            <UserCog />
+                            <span>Profile</span>
+                          </SidebarMenuSubButton>
+                       </Link>
+                    </SidebarMenuSubItem>
+                    <SidebarMenuSubItem>
+                      <Link href="/dashboard/settings/billing" passHref legacyBehavior>
+                          <SidebarMenuSubButton isActive={pathname === "/dashboard/settings/billing"}>
+                            <CreditCard />
+                            <span>Billing</span>
+                          </SidebarMenuSubButton>
+                      </Link>
+                    </SidebarMenuSubItem>
+                  </SidebarMenuSub>
+                </CollapsibleContent>
+              </Collapsible>
+            </SidebarMenuItem>
+
           </SidebarMenu>
         </SidebarContent>
         <SidebarFooter>
