@@ -38,6 +38,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Footer } from "@/components/footer";
 
 export default function DashboardLayout({
   children,
@@ -175,13 +176,16 @@ export default function DashboardLayout({
         </SidebarFooter>
       </Sidebar>
       <SidebarInset>
-        <header className="sticky top-0 z-50 flex h-14 items-center gap-4 border-b bg-background/95 px-4 backdrop-blur-sm lg:h-[60px] lg:px-6">
-            <SidebarTrigger className="md:hidden" />
-            <div className="w-full flex-1">
-                <h1 className="text-lg font-semibold md:text-2xl capitalize">{pathname.split('/').pop()?.replace('-', ' ') || 'Dashboard'}</h1>
-            </div>
-        </header>
-        <main className="flex-1 overflow-y-auto p-4 sm:p-6">{children}</main>
+        <div className="flex flex-col min-h-svh">
+            <header className="sticky top-0 z-50 flex h-14 items-center gap-4 border-b bg-background/95 px-4 backdrop-blur-sm lg:h-[60px] lg:px-6">
+                <SidebarTrigger className="md:hidden" />
+                <div className="w-full flex-1">
+                    <h1 className="text-lg font-semibold md:text-2xl capitalize">{pathname.split('/').pop()?.replace('-', ' ') || 'Dashboard'}</h1>
+                </div>
+            </header>
+            <main className="flex-1 overflow-y-auto p-4 sm:p-6">{children}</main>
+            <Footer />
+        </div>
       </SidebarInset>
     </SidebarProvider>
   );

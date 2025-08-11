@@ -1,15 +1,19 @@
 import Link from "next/link";
 import { SignupForm } from "@/components/auth/signup-form";
 import { Icons } from "@/components/icons";
+import { Footer } from "@/components/footer";
 import Image from "next/image";
 
 export default function SignupPage() {
   return (
-    <div className="container grid h-svh flex-col items-center justify-center lg:max-w-none lg:grid-cols-2 lg:px-0">
-       <div className="p-4 sm:p-8">
-        <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
-          <SignupForm />
+    <div className="grid h-svh flex-col items-center justify-center lg:grid-cols-2 lg:px-0">
+      <div className="flex flex-col h-full">
+        <div className="flex-1 flex items-center justify-center p-4 sm:p-8">
+            <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
+            <SignupForm />
+            </div>
         </div>
+        <Footer />
       </div>
       <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
          <Image
