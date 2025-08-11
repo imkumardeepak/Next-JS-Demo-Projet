@@ -15,6 +15,8 @@ import {
   UserCog,
   ListTodo,
   FileText,
+  Bell,
+  Mail,
 } from "lucide-react";
 import {
   Sidebar,
@@ -148,7 +150,6 @@ export default function DashboardLayout({
            <SidebarGroup>
               <div className="flex justify-between items-center p-2">
                 <SidebarGroupLabel>User</SidebarGroupLabel>
-                <ThemeToggle />
               </div>
               <SidebarMenu>
                  <SidebarMenuItem>
@@ -190,6 +191,17 @@ export default function DashboardLayout({
                 <SidebarTrigger className="md:hidden" />
                 <div className="w-full flex-1">
                     <h1 className="text-lg font-semibold md:text-2xl capitalize">{pathname.split('/').pop()?.replace('-', ' ') || 'Dashboard'}</h1>
+                </div>
+                 <div className="flex items-center gap-2">
+                    <Button variant="ghost" size="icon">
+                        <Bell className="h-5 w-5" />
+                        <span className="sr-only">Notifications</span>
+                    </Button>
+                     <Button variant="ghost" size="icon">
+                        <Mail className="h-5 w-5" />
+                        <span className="sr-only">Messages</span>
+                    </Button>
+                    <ThemeToggle />
                 </div>
             </header>
             <main className="flex-1 overflow-y-auto p-4 sm:p-6">{children}</main>
