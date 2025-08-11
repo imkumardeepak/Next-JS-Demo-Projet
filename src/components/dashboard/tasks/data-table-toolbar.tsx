@@ -2,7 +2,7 @@
 "use client";
 
 import type { Table } from "@tanstack/react-table";
-import { XIcon } from "lucide-react";
+import { PlusCircle, XIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { DataTableViewOptions } from "@/components/dashboard/tasks/data-table-view-options";
@@ -38,7 +38,13 @@ export function DataTableToolbar<TData>({
           </Button>
         )}
       </div>
-      <DataTableViewOptions table={table} />
+      <div className="flex items-center space-x-2">
+        <DataTableViewOptions table={table} />
+        <Button size="sm" className="h-8">
+            <PlusCircle className="mr-2 h-4 w-4" />
+            Add Task
+        </Button>
+      </div>
     </div>
   );
 }
