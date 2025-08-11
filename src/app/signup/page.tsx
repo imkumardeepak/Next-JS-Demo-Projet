@@ -1,9 +1,15 @@
-import { LoginForm } from "@/components/auth/login-form";
+import Link from "next/link";
+import { SignupForm } from "@/components/auth/signup-form";
 import { Icons } from "@/components/icons";
 
-export default function LoginPage() {
+export default function SignupPage() {
   return (
-    <div className="container relative grid h-svh flex-col items-center justify-center lg:max-w-none lg:grid-cols-2 lg:px-0">
+    <div className="container grid h-svh flex-col items-center justify-center lg:max-w-none lg:grid-cols-2 lg:px-0">
+       <div className="lg:p-8">
+        <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
+          <SignupForm />
+        </div>
+      </div>
       <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
         <div className="absolute inset-0 bg-primary" />
         <div className="relative z-20 flex items-center text-lg font-medium">
@@ -13,16 +19,10 @@ export default function LoginPage() {
         <div className="relative z-20 mt-auto">
           <blockquote className="space-y-2">
             <p className="text-lg">
-              “The journey of a thousand miles begins with a single step. And a
-              valid bus pass.”
+              "A seamless journey starts here. Get your digital pass in seconds and ride with ease."
             </p>
-            <footer className="text-sm">Fictional Proverb</footer>
+            <footer className="text-sm">The Future of Transit</footer>
           </blockquote>
-        </div>
-      </div>
-      <div className="lg:p-8">
-        <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
-          <LoginForm />
         </div>
       </div>
     </div>
