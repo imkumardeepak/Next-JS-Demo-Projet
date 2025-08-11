@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "@/components/theme-provider";
+import ProgressBarProvider from "@/components/progress-bar-provider";
 
 export const metadata: Metadata = {
   title: "TransitPass",
@@ -30,7 +31,9 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
         >
-          {children}
+          <ProgressBarProvider>
+            {children}
+          </ProgressBarProvider>
           <Toaster />
         </ThemeProvider>
       </body>
