@@ -75,6 +75,19 @@
     --sidebar-border: 217.2 32.6% 22.5%;
     --sidebar-ring: 212.7 26.8% 83.9%;
   }
+
+  ::-webkit-scrollbar {
+      @apply h-2 w-2;
+  }
+  ::-webkit-scrollbar-track {
+      @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+      @apply rounded-full bg-border;
+  }
+  .dark ::-webkit-scrollbar-thumb {
+      @apply bg-slate-700;
+  }
 }
 
 @layer base {
