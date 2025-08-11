@@ -13,6 +13,7 @@ import {
   ChevronDown,
   CreditCard,
   UserCog,
+  ListTodo,
 } from "lucide-react";
 import {
   Sidebar,
@@ -66,6 +67,14 @@ export default function DashboardLayout({
                 <SidebarMenuButton isActive={pathname === "/dashboard"} tooltip="Dashboard">
                   <Home />
                   <span>Dashboard</span>
+                </SidebarMenuButton>
+              </Link>
+            </SidebarMenuItem>
+             <SidebarMenuItem>
+              <Link href="/dashboard/tasks" passHref legacyBehavior>
+                <SidebarMenuButton isActive={pathname === "/dashboard/tasks"} tooltip="Tasks">
+                  <ListTodo />
+                  <span>Tasks</span>
                 </SidebarMenuButton>
               </Link>
             </SidebarMenuItem>
