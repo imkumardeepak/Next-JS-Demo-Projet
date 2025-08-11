@@ -1,6 +1,5 @@
 import { LoginForm } from "@/components/auth/login-form";
 import { Icons } from "@/components/icons";
-import { Footer } from "@/components/footer";
 import Image from "next/image";
 
 export default function LoginPage() {
@@ -29,13 +28,10 @@ export default function LoginPage() {
           </blockquote>
         </div>
       </div>
-      <div className="flex flex-col h-full">
-        <div className="flex-1 flex items-center justify-center p-4 sm:p-8">
-            <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
-            <LoginForm />
-            </div>
+      <div className="lg:p-8">
+        <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
+          <LoginForm />
         </div>
-        <Footer />
       </div>
     </div>
   );
