@@ -130,11 +130,11 @@ function AdvancedForm() {
   if (isFetching) {
     return (
       <Card>
-        <CardHeader>
+        <CardHeader className="border-b">
           <Skeleton className="h-8 w-1/2" />
           <Skeleton className="h-4 w-3/4" />
         </CardHeader>
-        <CardContent className="space-y-6">
+        <CardContent className="space-y-6 pt-6">
           <div className="grid md:grid-cols-2 gap-6">
             <div className="space-y-2">
               <Skeleton className="h-4 w-16" />
@@ -177,13 +177,13 @@ function AdvancedForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Card>
-        <CardHeader>
+        <CardHeader className="border-b">
           <CardTitle>User Profile</CardTitle>
           <CardDescription>
             A comprehensive form showcasing various input types with validation.
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-6">
+        <CardContent className="space-y-6 pt-6">
           {/* Text Inputs in a grid */}
           <div className="grid md:grid-cols-2 gap-6">
             <div className="space-y-2">
