@@ -35,18 +35,22 @@ export function DraggableRow({ row }: DraggableRowProps) {
       ref={setNodeRef}
       style={style}
       className={cn(isDragging && "bg-accent")}
+      data-state={row.getIsSelected() && "selected"}
     >
-      {row.getVisibleCells().map((cell) => (
-        <TableCell key={cell.id}>
-          {cell.column.id === "drag-handle" ? (
-             <span {...attributes} {...listeners}>
-                {flexRender(cell.column.columnDef.cell, cell.getContext())}
-             </span>
-          ) : (
-            flexRender(cell.column.columnDef.cell, cell.getContext())
-          )}
-        </TableCell>
-      ))}
+      {row.getVisibleCells().map((cell) => {
+        const isHiddenOnMobile = ["status", "priority"].includes(cell.column.id);
+        return (
+          <TableCell key={cell.id} className={isHiddenOnMobile ? "hidden sm:table-cell" : ""}>
+            {cell.column.id === "drag-handle" ? (
+               <span {...attributes} {...listeners}>
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+               </span>
+            ) : (
+              flexRender(cell.column.columnDef.cell, cell.getContext())
+            )}
+          </TableCell>
+        );
+      })}
     </TableRow>
   );
 }

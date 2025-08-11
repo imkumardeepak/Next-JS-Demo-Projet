@@ -129,16 +129,20 @@ export function DraggableDataTable() {
                 <TableHeader>
                   {table.getHeaderGroups().map((headerGroup) => (
                     <TableRow key={headerGroup.id}>
-                      {headerGroup.headers.map((header) => (
-                        <TableHead key={header.id}>
-                          {header.isPlaceholder
-                            ? null
-                            : flexRender(
-                                header.column.columnDef.header,
-                                header.getContext()
-                              )}
-                        </TableHead>
-                      ))}
+                      {headerGroup.headers.map((header) => {
+                        // Hiding status and priority columns on small screens
+                        const isHiddenOnMobile = ["status", "priority"].includes(header.id);
+                        return (
+                          <TableHead key={header.id} className={isHiddenOnMobile ? "hidden sm:table-cell" : ""}>
+                            {header.isPlaceholder
+                              ? null
+                              : flexRender(
+                                  header.column.columnDef.header,
+                                  header.getContext()
+                                )}
+                          </TableHead>
+                        );
+                      })}
                     </TableRow>
                   ))}
                 </TableHeader>
@@ -148,7 +152,7 @@ export function DraggableDataTable() {
                     strategy={verticalListSortingStrategy}
                   >
                     {table.getRowModel().rows.map((row) => (
-                      <DraggableRow key={row.id} row={row} />
+                       <DraggableRow key={row.id} row={row} />
                     ))}
                   </SortableContext>
                 </TableBody>
