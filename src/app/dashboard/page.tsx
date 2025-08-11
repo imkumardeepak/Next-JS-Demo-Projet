@@ -1,46 +1,94 @@
 "use client";
 
-import React, { useState } from "react";
-import { add } from "date-fns";
-import type { ActivePass, PassOption } from "@/types";
-import { ActivePassView } from "@/components/dashboard/active-pass-view";
-import { PassSelection } from "@/components/dashboard/pass-selection";
-
-// Mock user data, in a real app this would come from an auth context
-const mockUser = {
-  id: "usr_12345",
-  name: "John Doe",
-};
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { DollarSign, Users, CreditCard, Activity } from "lucide-react";
+import { RecentSales } from "@/components/dashboard/recent-sales";
+import { OverviewChart } from "@/components/dashboard/overview-chart";
 
 export default function DashboardPage() {
-  const [activePass, setActivePass] = useState<ActivePass | null>(null);
-
-  const handlePurchase = (passOption: PassOption) => {
-    const purchaseDate = new Date();
-    const expiryDate = add(purchaseDate, { days: passOption.durationDays });
-
-    const newPass: ActivePass = {
-      id: `pass_${Date.now()}`,
-      userId: mockUser.id,
-      userName: mockUser.name,
-      type: passOption.type,
-      purchaseDate,
-      expiryDate,
-    };
-    setActivePass(newPass);
-  };
-
-  const handleExpire = () => {
-      setActivePass(null);
-  }
-
   return (
     <div className="flex flex-1 flex-col gap-4 md:gap-8">
-      {activePass ? (
-        <ActivePassView pass={activePass} onExpire={handleExpire} />
-      ) : (
-        <PassSelection onPurchase={handlePurchase} />
-      )}
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">
+              Total Revenue
+            </CardTitle>
+            <DollarSign className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">$45,231.89</div>
+            <p className="text-xs text-muted-foreground">
+              +20.1% from last month
+            </p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Active Users</CardTitle>
+            <Users className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">+2350</div>
+            <p className="text-xs text-muted-foreground">
+              +180.1% from last month
+            </p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Sales</CardTitle>
+            <CreditCard className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">+12,234</div>
+            <p className="text-xs text-muted-foreground">
+              +19% from last month
+            </p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">
+              Daily Scans
+            </CardTitle>
+            <Activity className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">+573</div>
+            <p className="text-xs text-muted-foreground">
+              +20 since last hour
+            </p>
+          </CardContent>
+        </Card>
+      </div>
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
+        <Card className="col-span-4">
+          <CardHeader>
+            <CardTitle>Overview</CardTitle>
+          </CardHeader>
+          <CardContent className="pl-2">
+            <OverviewChart />
+          </CardContent>
+        </Card>
+        <Card className="col-span-4 lg:col-span-3">
+          <CardHeader>
+            <CardTitle>Recent Sales</CardTitle>
+            <CardDescription>
+              You made 265 sales this month.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <RecentSales />
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 }
