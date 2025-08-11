@@ -36,6 +36,8 @@ import { Icons } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default function DashboardLayout({
   children,
@@ -140,16 +142,33 @@ export default function DashboardLayout({
               </div>
               <SidebarMenu>
                  <SidebarMenuItem>
-                    <SidebarMenuButton>
-                      <User />
-                      <span>John Doe</span>
-                    </SidebarMenuButton>
-                 </SidebarMenuItem>
-                 <SidebarMenuItem>
-                    <SidebarMenuButton onClick={handleLogout}>
-                      <LogOut />
-                      <span>Logout</span>
-                    </SidebarMenuButton>
+                   <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <SidebarMenuButton className="w-full">
+                           <div className="flex w-full items-center justify-between">
+                              <div className="flex items-center gap-2">
+                                <Avatar className="h-6 w-6">
+                                  <AvatarImage src="https://placehold.co/100x100.png" />
+                                  <AvatarFallback>JD</AvatarFallback>
+                                </Avatar>
+                                <span className="truncate">John Doe</span>
+                              </div>
+                              <ChevronDown className="h-4 w-4" />
+                           </div>
+                        </SidebarMenuButton>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent className="w-[var(--sidebar-width)] mb-2" side="top" align="start">
+                        <DropdownMenuLabel>
+                          <p>John Doe</p>
+                          <p className="text-xs text-muted-foreground font-normal">john.doe@example.com</p>
+                        </DropdownMenuLabel>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem onClick={handleLogout}>
+                          <LogOut className="mr-2 h-4 w-4" />
+                          <span>Log out</span>
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
                  </SidebarMenuItem>
               </SidebarMenu>
            </SidebarGroup>
