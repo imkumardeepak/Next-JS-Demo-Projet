@@ -358,7 +358,7 @@ const queryClient = new QueryClient();
 export default function FormPage() {
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="flex justify-center">
+      <div className="w-full">
         <AdvancedForm />
       </div>
     </QueryClientProvider>
