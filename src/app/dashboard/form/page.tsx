@@ -129,7 +129,7 @@ function AdvancedForm() {
 
   if (isFetching) {
     return (
-      <Card>
+      <Card className="shadow-lg">
         <CardHeader className="border-b">
           <Skeleton className="h-8 w-1/2" />
           <Skeleton className="h-4 w-3/4" />
@@ -163,7 +163,7 @@ function AdvancedForm() {
 
   if (isError) {
     return (
-      <Card>
+      <Card className="shadow-lg">
         <CardHeader>
           <CardTitle>Error</CardTitle>
           <CardDescription>
@@ -176,7 +176,7 @@ function AdvancedForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Card>
+      <Card className="shadow-lg">
         <CardHeader className="border-b">
           <CardTitle>User Profile</CardTitle>
           <CardDescription>
