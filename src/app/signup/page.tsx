@@ -13,7 +13,7 @@ export default function SignupPage() {
       </div>
       <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
          <Image
-          src="https://placehold.co/1080x1920.png"
+          src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           alt="A bustling city street with modern transportation"
           fill
           className="object-cover"

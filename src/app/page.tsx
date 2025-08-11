@@ -7,7 +7,7 @@ export default function LoginPage() {
     <div className="container relative grid h-svh flex-col items-center justify-center lg:max-w-none lg:grid-cols-2 lg:px-0">
       <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
         <Image
-          src="https://placehold.co/1080x1920.png"
+          src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           alt="A modern transit hub"
           fill
           className="object-cover"
