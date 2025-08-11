@@ -15,12 +15,12 @@ export default function DashboardPage() {
   return (
     <div className="flex flex-1 flex-col gap-4 md:gap-8">
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <Card>
+        <Card className="bg-chart-1/20 border-chart-1/30">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">
+            <CardTitle className="text-sm font-medium text-foreground/80">
               Total Revenue
             </CardTitle>
-            <DollarSign className="h-4 w-4 text-chart-1" />
+            <DollarSign className="h-4 w-4 text-foreground/80" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">$45,231.89</div>
@@ -29,10 +29,10 @@ export default function DashboardPage() {
             </p>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="bg-chart-2/20 border-chart-2/30">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Active Users</CardTitle>
-            <Users className="h-4 w-4 text-chart-2" />
+            <CardTitle className="text-sm font-medium text-foreground/80">Active Users</CardTitle>
+            <Users className="h-4 w-4 text-foreground/80" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">+2350</div>
@@ -41,10 +41,10 @@ export default function DashboardPage() {
             </p>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="bg-chart-3/20 border-chart-3/30">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Sales</CardTitle>
-            <CreditCard className="h-4 w-4 text-chart-3" />
+            <CardTitle className="text-sm font-medium text-foreground/80">Sales</CardTitle>
+            <CreditCard className="h-4 w-4 text-foreground/80" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">+12,234</div>
@@ -53,12 +53,12 @@ export default function DashboardPage() {
             </p>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="bg-chart-4/20 border-chart-4/30">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">
+            <CardTitle className="text-sm font-medium text-foreground/80">
               Daily Scans
             </CardTitle>
-            <Activity className="h-4 w-4 text-chart-4" />
+            <Activity className="h-4 w-4 text-foreground/80" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">+573</div>
