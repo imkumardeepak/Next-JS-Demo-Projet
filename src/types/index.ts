@@ -1,3 +1,4 @@
+
 export type PassOption = {
   type: 'Daily' | 'Weekly' | 'Monthly';
   price: number;

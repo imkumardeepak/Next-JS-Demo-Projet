@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from "react";
@@ -20,7 +21,7 @@ export function DraggableRow({ row }: DraggableRowProps) {
     transform,
     transition,
     isDragging,
-  } = useSortable({ id: row.original.id });
+  } = useSortable({ id: row.original.id, disabled: row.getIsSelected() });
 
   const style: React.CSSProperties = {
     transform: CSS.Transform.toString(transform),
@@ -38,9 +39,8 @@ export function DraggableRow({ row }: DraggableRowProps) {
       data-state={row.getIsSelected() && "selected"}
     >
       {row.getVisibleCells().map((cell) => {
-        const isHiddenOnMobile = ["status", "priority"].includes(cell.column.id);
         return (
-          <TableCell key={cell.id} className={isHiddenOnMobile ? "hidden sm:table-cell" : ""}>
+          <TableCell key={cell.id}>
             {cell.column.id === "drag-handle" ? (
                <span {...attributes} {...listeners}>
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
