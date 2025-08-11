@@ -129,19 +129,21 @@ function AdvancedForm() {
 
   if (isFetching) {
     return (
-      <Card className="max-w-2xl">
+      <Card>
         <CardHeader>
           <Skeleton className="h-8 w-1/2" />
           <Skeleton className="h-4 w-3/4" />
         </CardHeader>
         <CardContent className="space-y-6">
-          <div className="space-y-2">
-            <Skeleton className="h-4 w-16" />
-            <Skeleton className="h-10 w-full" />
-          </div>
-          <div className="space-y-2">
-            <Skeleton className="h-4 w-16" />
-            <Skeleton className="h-10 w-full" />
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="space-y-2">
+              <Skeleton className="h-4 w-16" />
+              <Skeleton className="h-10 w-full" />
+            </div>
+            <div className="space-y-2">
+              <Skeleton className="h-4 w-16" />
+              <Skeleton className="h-10 w-full" />
+            </div>
           </div>
           <div className="space-y-2">
             <Skeleton className="h-4 w-16" />
@@ -161,7 +163,7 @@ function AdvancedForm() {
 
   if (isError) {
     return (
-      <Card className="max-w-2xl">
+      <Card>
         <CardHeader>
           <CardTitle>Error</CardTitle>
           <CardDescription>
@@ -174,7 +176,7 @@ function AdvancedForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Card className="w-full max-w-2xl">
+      <Card>
         <CardHeader>
           <CardTitle>User Profile</CardTitle>
           <CardDescription>
@@ -182,23 +184,26 @@ function AdvancedForm() {
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
-          {/* Text Inputs */}
-          <div className="space-y-2">
-            <Label htmlFor="name">Name</Label>
-            <Input id="name" {...register("name")} />
-            {errors.name && (
-              <p className="text-xs text-destructive">{errors.name.message}</p>
-            )}
+          {/* Text Inputs in a grid */}
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="space-y-2">
+              <Label htmlFor="name">Name</Label>
+              <Input id="name" {...register("name")} />
+              {errors.name && (
+                <p className="text-xs text-destructive">{errors.name.message}</p>
+              )}
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="username">Username</Label>
+              <Input id="username" {...register("username")} />
+              {errors.username && (
+                <p className="text-xs text-destructive">
+                  {errors.username.message}
+                </p>
+              )}
+            </div>
           </div>
-          <div className="space-y-2">
-            <Label htmlFor="username">Username</Label>
-            <Input id="username" {...register("username")} />
-            {errors.username && (
-              <p className="text-xs text-destructive">
-                {errors.username.message}
-              </p>
-            )}
-          </div>
+
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
             <Input id="email" type="email" {...register("email")} />
@@ -215,66 +220,69 @@ function AdvancedForm() {
               <p className="text-xs text-destructive">{errors.bio.message}</p>
             )}
           </div>
-
-          {/* Select Dropdown */}
-           <div className="space-y-2">
-              <Label htmlFor="role">Role</Label>
-               <Controller
-                name="role"
-                control={control}
-                render={({ field }) => (
-                  <Select onValueChange={field.onChange} value={field.value}>
-                    <SelectTrigger id="role">
-                      <SelectValue placeholder="Select a role" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="user">User</SelectItem>
-                      <SelectItem value="editor">Editor</SelectItem>
-                      <SelectItem value="admin">Admin</SelectItem>
-                    </SelectContent>
-                  </Select>
-                )}
-              />
-              {errors.role && (
-                <p className="text-xs text-destructive">{errors.role.message}</p>
-              )}
-            </div>
-
-            {/* Date Picker */}
+          
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* Select Dropdown */}
             <div className="space-y-2">
-                <Label htmlFor="birthDate">Date of Birth</Label>
+                <Label htmlFor="role">Role</Label>
                 <Controller
-                    name="birthDate"
-                    control={control}
-                    render={({ field }) => (
-                        <Popover>
-                            <PopoverTrigger asChild>
-                                <Button
-                                variant={"outline"}
-                                className={cn(
-                                    "w-full justify-start text-left font-normal",
-                                    !field.value && "text-muted-foreground"
-                                )}
-                                >
-                                <CalendarIcon className="mr-2 h-4 w-4" />
-                                {field.value ? format(field.value, "PPP") : <span>Pick a date</span>}
-                                </Button>
-                            </PopoverTrigger>
-                            <PopoverContent className="w-auto p-0">
-                                <Calendar
-                                mode="single"
-                                selected={field.value}
-                                onSelect={field.onChange}
-                                initialFocus
-                                />
-                            </PopoverContent>
-                        </Popover>
-                    )}
+                  name="role"
+                  control={control}
+                  render={({ field }) => (
+                    <Select onValueChange={field.onChange} value={field.value}>
+                      <SelectTrigger id="role">
+                        <SelectValue placeholder="Select a role" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="user">User</SelectItem>
+                        <SelectItem value="editor">Editor</SelectItem>
+                        <SelectItem value="admin">Admin</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  )}
                 />
-                 {errors.birthDate && (
-                    <p className="text-xs text-destructive">{errors.birthDate.message}</p>
+                {errors.role && (
+                  <p className="text-xs text-destructive">{errors.role.message}</p>
                 )}
-            </div>
+              </div>
+
+              {/* Date Picker */}
+              <div className="space-y-2">
+                  <Label htmlFor="birthDate">Date of Birth</Label>
+                  <Controller
+                      name="birthDate"
+                      control={control}
+                      render={({ field }) => (
+                          <Popover>
+                              <PopoverTrigger asChild>
+                                  <Button
+                                  variant={"outline"}
+                                  className={cn(
+                                      "w-full justify-start text-left font-normal",
+                                      !field.value && "text-muted-foreground"
+                                  )}
+                                  >
+                                  <CalendarIcon className="mr-2 h-4 w-4" />
+                                  {field.value ? format(field.value, "PPP") : <span>Pick a date</span>}
+                                  </Button>
+                              </PopoverTrigger>
+                              <PopoverContent className="w-auto p-0">
+                                  <Calendar
+                                  mode="single"
+                                  selected={field.value}
+                                  onSelect={field.onChange}
+                                  initialFocus
+                                  />
+                              </PopoverContent>
+                          </Popover>
+                      )}
+                  />
+                  {errors.birthDate && (
+                      <p className="text-xs text-destructive">{errors.birthDate.message}</p>
+                  )}
+              </div>
+          </div>
+            
 
             {/* Radio Group */}
             <div className="space-y-2">
@@ -288,25 +296,25 @@ function AdvancedForm() {
                                 <RadioGroupItem value="email" id="r-email" />
                                 <Label htmlFor="r-email">Email</Label>
                             </div>
-                             <div className="flex items-center space-x-2">
+                              <div className="flex items-center space-x-2">
                                 <RadioGroupItem value="sms" id="r-sms" />
                                 <Label htmlFor="r-sms">SMS</Label>
                             </div>
-                             <div className="flex items-center space-x-2">
+                              <div className="flex items-center space-x-2">
                                 <RadioGroupItem value="none" id="r-none" />
                                 <Label htmlFor="r-none">None</Label>
                             </div>
                         </RadioGroup>
                     )}
                 />
-                 {errors.notificationType && (
+                  {errors.notificationType && (
                     <p className="text-xs text-destructive">{errors.notificationType.message}</p>
                 )}
             </div>
 
             {/* Checkbox and Switch */}
             <div className="flex flex-wrap items-center gap-8 pt-2">
-                 <div className="flex items-center space-x-2">
+                  <div className="flex items-center space-x-2">
                     <Controller
                         name="newsletter"
                         control={control}
@@ -318,8 +326,8 @@ function AdvancedForm() {
                         Subscribe to newsletter
                     </Label>
                 </div>
-                 <div className="flex items-center space-x-2">
-                     <Controller
+                  <div className="flex items-center space-x-2">
+                      <Controller
                         name="enableDarkMode"
                         control={control}
                         render={({field}) => (
