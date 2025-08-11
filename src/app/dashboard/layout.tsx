@@ -14,6 +14,7 @@ import {
   CreditCard,
   UserCog,
   ListTodo,
+  FileText,
 } from "lucide-react";
 import {
   Sidebar,
@@ -78,6 +79,14 @@ export default function DashboardLayout({
                 <SidebarMenuButton isActive={pathname === "/dashboard/tasks"} tooltip="Tasks">
                   <ListTodo />
                   <span>Tasks</span>
+                </SidebarMenuButton>
+              </Link>
+            </SidebarMenuItem>
+             <SidebarMenuItem>
+              <Link href="/dashboard/form" passHref legacyBehavior>
+                <SidebarMenuButton isActive={pathname === "/dashboard/form"} tooltip="Form">
+                  <FileText />
+                  <span>Form</span>
                 </SidebarMenuButton>
               </Link>
             </SidebarMenuItem>
