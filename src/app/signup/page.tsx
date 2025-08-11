@@ -14,10 +14,10 @@ export default function SignupPage() {
       <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
          <Image
           src="https://placehold.co/1080x1920.png"
-          alt="A smiling person using their phone on a bus"
+          alt="A bustling city street with modern transportation"
           fill
           className="object-cover"
-          data-ai-hint="bus passenger"
+          data-ai-hint="city street"
         />
         <div className="absolute inset-0 bg-primary/60" />
         <div className="relative z-20 flex items-center text-lg font-medium">
