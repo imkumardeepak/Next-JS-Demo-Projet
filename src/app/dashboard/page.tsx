@@ -20,7 +20,7 @@ export default function DashboardPage() {
             <CardTitle className="text-sm font-medium">
               Total Revenue
             </CardTitle>
-            <DollarSign className="h-4 w-4 text-muted-foreground" />
+            <DollarSign className="h-4 w-4 text-chart-1" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">$45,231.89</div>
@@ -32,7 +32,7 @@ export default function DashboardPage() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Active Users</CardTitle>
-            <Users className="h-4 w-4 text-muted-foreground" />
+            <Users className="h-4 w-4 text-chart-2" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">+2350</div>
@@ -44,7 +44,7 @@ export default function DashboardPage() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Sales</CardTitle>
-            <CreditCard className="h-4 w-4 text-muted-foreground" />
+            <CreditCard className="h-4 w-4 text-chart-3" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">+12,234</div>
@@ -58,7 +58,7 @@ export default function DashboardPage() {
             <CardTitle className="text-sm font-medium">
               Daily Scans
             </CardTitle>
-            <Activity className="h-4 w-4 text-muted-foreground" />
+            <Activity className="h-4 w-4 text-chart-4" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">+573</div>
