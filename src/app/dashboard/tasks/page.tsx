@@ -138,10 +138,10 @@ export default function TasksPage() {
     cell: ({ row }) => {
       const status = row.getValue("status") as Task["status"];
       const variant = {
-        done: "default",
+        done: "success",
         "in-progress": "secondary",
         todo: "outline",
-      }[status] as "default" | "secondary" | "outline";
+      }[status] as "success" | "secondary" | "outline";
       return <Badge variant={variant} className="capitalize">{status.replace('-', ' ')}</Badge>;
     },
     filterFn: (row, id, value) => {
@@ -157,9 +157,9 @@ export default function TasksPage() {
         const priority = row.getValue("priority") as Task["priority"];
          const variant = {
             high: "destructive",
-            medium: "secondary",
+            medium: "warning",
             low: "outline",
-        }[priority]  as "default" | "destructive" | "secondary" | "outline";
+        }[priority]  as "destructive" | "warning" | "outline";
         return <Badge variant={variant} className="capitalize">{priority}</Badge>;
     },
      filterFn: (row, id, value) => {
