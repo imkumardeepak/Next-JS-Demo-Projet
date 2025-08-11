@@ -34,7 +34,7 @@ export function ActivePassView({ pass, onExpire }: ActivePassViewProps) {
     })
   );
 
-  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${qrData}&bgcolor=f8fafc`;
+  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${qrData}&bgcolor=ffffff`;
 
   useEffect(() => {
     const updateTimer = () => {
@@ -99,7 +99,7 @@ export function ActivePassView({ pass, onExpire }: ActivePassViewProps) {
                 <Clock className="h-6 w-6 text-muted-foreground" />
                 <div>
                     <p className="font-semibold">{isExpired ? 'Expired On' : 'Expires In'}</p>
-                    <p className={`text-sm ${isExpired ? 'text-destructive font-bold' : 'text-primary-foreground font-bold'}`}>{isExpired ? format(pass.expiryDate, "PPP p") : timeLeft}</p>
+                    <p className={`text-sm ${isExpired ? 'text-destructive font-bold' : 'text-primary font-bold'}`}>{isExpired ? format(pass.expiryDate, "PPP p") : timeLeft}</p>
                 </div>
             </div>
         </div>
