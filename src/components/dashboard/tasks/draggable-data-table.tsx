@@ -22,8 +22,6 @@ import {
   type ColumnDef,
 } from "@tanstack/react-table";
 import { GripVertical } from "lucide-react";
-import { DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
 
 import type { Task } from "@/types";
 import { Badge } from "@/components/ui/badge";
@@ -113,7 +111,6 @@ export function DraggableDataTable() {
   const sensors = useSensors(useSensor(MouseSensor), useSensor(TouchSensor));
 
   return (
-    <DndProvider backend={HTML5Backend}>
       <Card>
         <CardHeader>
           <CardTitle>Project Tasks</CardTitle>
@@ -160,6 +157,5 @@ export function DraggableDataTable() {
           </DndContext>
         </CardContent>
       </Card>
-    </DndProvider>
   );
 }
