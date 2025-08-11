@@ -106,6 +106,19 @@ const columns: ColumnDef<Task>[] = [
 
 export default function TasksPage() {
   const [tasks, setTasks] = React.useState(defaultTasks);
+
+  const handleAddTask = () => {
+    // In a real app, you'd likely open a dialog/modal to create a new task.
+    console.log("Add new task button clicked!");
+    const newTask: Task = {
+        id: `task-${tasks.length + 1}`,
+        title: "New Task",
+        status: "todo",
+        priority: "low",
+    };
+    setTasks(prevTasks => [...prevTasks, newTask]);
+  };
+
   return (
     <div className="flex flex-col gap-4">
         <DataTable
@@ -116,6 +129,7 @@ export default function TasksPage() {
             pageDescription="A list of tasks for the project. Drag and drop to reorder."
             searchColumn="title"
             addLabel="Add Task"
+            onAddClick={handleAddTask}
         />
     </div>
   );
