@@ -3,6 +3,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "@/components/theme-provider";
 import TopLoadingBar from "@/components/top-loading-bar";
+import { PageLoader } from "@/components/page-loader";
 
 export const metadata: Metadata = {
   title: "TransitPass",
@@ -31,6 +32,7 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
         >
+          <PageLoader />
           <TopLoadingBar />
           {children}
           <Toaster />
