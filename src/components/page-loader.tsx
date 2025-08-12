@@ -1,9 +1,10 @@
+
 "use client";
 
 import React, { useState, useEffect, Suspense } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
-import { Icons } from '@/components/icons';
 import { cn } from '@/lib/utils';
+import { Loader } from './loader';
 
 function PageLoaderComponent() {
   const [isLoading, setIsLoading] = useState(false);
@@ -24,7 +25,7 @@ function PageLoaderComponent() {
 
   return (
     <div className={cn("page-loader-wrapper", { 'is-loading': isLoading })}>
-        <Icons.spinner className="h-8 w-8 animate-spin text-primary" />
+        <Loader />
     </div>
   );
 };
