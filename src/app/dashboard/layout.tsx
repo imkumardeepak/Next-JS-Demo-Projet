@@ -1,4 +1,3 @@
-
 "use client";
 
 import * as React from "react";
@@ -112,7 +111,11 @@ const NavMenu = () => {
 
   React.useEffect(() => {
     // Open settings if a sub-item is active
-    if (navItems.some(item => item.subItems?.some(sub => sub.href === pathname))) {
+    if (
+      navItems.some((item) =>
+        item.subItems?.some((sub) => sub.href === pathname)
+      )
+    ) {
       setOpenSettings(true);
     }
   }, [pathname]);
@@ -174,7 +177,6 @@ const NavMenu = () => {
     </SidebarMenu>
   );
 };
-
 
 export default function DashboardLayout({
   children,
