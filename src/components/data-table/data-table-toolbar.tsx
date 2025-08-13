@@ -24,7 +24,7 @@ export function DataTableToolbar<TData>({
     <div className="flex items-center justify-between">
       <div className="flex flex-1 items-center space-x-2">
         <Input
-          placeholder={`Filter by ${searchColumn}...`}
+          placeholder="Filter by title..."
           value={(table.getColumn(searchColumn)?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn(searchColumn)?.setFilterValue(event.target.value)
@@ -43,8 +43,8 @@ export function DataTableToolbar<TData>({
         )}
       </div>
       <div className="flex items-center space-x-2">
-        <DataTableViewOptions table={table} />
         {children}
+        <DataTableViewOptions table={table} />
       </div>
     </div>
   );
