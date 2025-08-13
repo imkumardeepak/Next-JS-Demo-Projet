@@ -49,15 +49,6 @@ export function SignupForm() {
   }
 
   return (
-    <>
-      <div className="flex flex-col space-y-2 text-center">
-        <h1 className="text-2xl font-semibold tracking-tight">
-          Create an Account
-        </h1>
-        <p className="text-sm text-muted-foreground">
-          Enter your details below to create your account
-        </p>
-      </div>
       <div className={cn("grid gap-6")}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid gap-4">
@@ -111,7 +102,7 @@ export function SignupForm() {
                 </p>
               )}
             </div>
-            <Button disabled={isLoading}>
+            <Button disabled={isLoading} className="w-full">
               {isLoading && (
                 <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
               )}
@@ -120,14 +111,5 @@ export function SignupForm() {
           </div>
         </form>
       </div>
-      <p className="px-8 text-center text-sm text-muted-foreground">
-          <Link
-            href="/"
-            className="underline underline-offset-4 hover:text-primary"
-          >
-            Already have an account? Sign In
-          </Link>
-        </p>
-    </>
   );
 }

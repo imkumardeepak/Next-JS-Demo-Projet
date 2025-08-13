@@ -85,7 +85,6 @@ export function LoginForm() {
               <Label htmlFor="username">Username</Label>
               <Input
                 id="username"
-                placeholder="admin"
                 type="text"
                 autoCapitalize="none"
                 autoComplete="username"
@@ -103,7 +102,6 @@ export function LoginForm() {
               <Label htmlFor="password">Password</Label>
               <Input
                 id="password"
-                placeholder="••••••••"
                 type="password"
                 disabled={isLoading}
                 {...register("password")}

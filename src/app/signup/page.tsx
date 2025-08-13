@@ -5,54 +5,42 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Icons } from "@/components/icons";
 import { Footer } from "@/components/footer";
 import Image from "next/image";
+import { SignupForm } from "@/components/auth/signup-form";
 
 export default function SignupPage() {
   return (
-    <div className="grid h-svh flex-col items-center justify-center lg:grid-cols-2 lg:px-0">
-      <div className="flex flex-col h-full">
-        <div className="flex-1 flex items-center justify-center p-4 sm:p-8">
-            <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
-             <Card>
-                <CardHeader className="text-center">
-                    <CardTitle>Sign Up Disabled</CardTitle>
-                    <CardDescription>
-                        Account creation is currently disabled. Please use the provided credentials to log in.
-                    </CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <Link href="/" passHref>
-                        <Button className="w-full">
-                            Back to Login
-                        </Button>
-                    </Link>
-                </CardContent>
-             </Card>
-            </div>
-        </div>
-        <Footer />
-      </div>
-      <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
-         <Image
-          src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          alt="A bustling city street with modern transportation"
-          fill
-          className="object-cover"
-          data-ai-hint="city street"
-        />
-        <div className="absolute inset-0 bg-primary/60" />
-        <div className="relative z-20 flex items-center text-lg font-medium">
-          <Icons.logo className="mr-2 h-8 w-8" />
-          TransitPass
-        </div>
-        <div className="relative z-20 mt-auto">
-          <blockquote className="space-y-2">
-            <p className="text-lg">
-              "A seamless journey starts here. Get your digital pass in seconds and ride with ease."
+    <div className="relative flex h-svh flex-col items-center justify-center bg-gradient-to-br from-background via-background to-muted">
+      <Card className="w-full max-w-sm">
+        <CardHeader className="items-center text-center">
+          <div className="mb-4 flex h-24 w-24 items-center justify-center">
+            <Image
+              src="/logofab.png"
+              alt="TransitPass Logo"
+              width={180}
+              height={160}
+              className="h-auto w-auto"
+            />
+          </div>
+          <CardTitle>Create an Account</CardTitle>
+          <CardDescription>
+            Enter your details below to create your account
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <SignupForm />
+        </CardContent>
+        <CardFooter className="flex-col gap-2 text-sm">
+            <p className="text-center text-sm text-muted-foreground">
+                Already have an account?{' '}
+                <Link
+                    href="/"
+                    className="font-semibold text-primary underline-offset-4 hover:underline"
+                >
+                    Sign In
+                </Link>
             </p>
-            <footer className="text-sm">The Future of Transit</footer>
-          </blockquote>
-        </div>
-      </div>
+        </CardFooter>
+      </Card>
     </div>
   );
 }
