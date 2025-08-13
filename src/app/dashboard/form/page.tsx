@@ -1,4 +1,3 @@
-
 "use client";
 
 import * as React from "react";
@@ -59,11 +58,17 @@ const formSchema = yup.object().shape({
     .email("Invalid email address")
     .required("Email is required"),
   bio: yup.string().max(160, "Bio must be less than 160 characters"),
-  role: yup.string().oneOf(["user", "editor", "admin"]).required("Role is required"),
+  role: yup
+    .string()
+    .oneOf(["user", "editor", "admin"])
+    .required("Role is required"),
   newsletter: yup.boolean(),
   notificationType: yup.string().oneOf(["email", "sms", "none"]).required(),
   enableDarkMode: yup.boolean(),
-  birthDate: yup.date().required("Date of birth is required").max(new Date(), "Date of birth cannot be in the future"),
+  birthDate: yup
+    .date()
+    .required("Date of birth is required")
+    .max(new Date(), "Date of birth cannot be in the future"),
 });
 
 type FormData = yup.InferType<typeof formSchema>;
@@ -106,7 +111,7 @@ function AdvancedForm() {
       notificationType: "email",
       enableDarkMode: true,
       role: "user",
-    }
+    },
   });
 
   // 4. Pre-populate form when data is loaded
@@ -149,7 +154,7 @@ function AdvancedForm() {
             <Skeleton className="h-4 w-16" />
             <Skeleton className="h-10 w-full" />
           </div>
-           <div className="space-y-2">
+          <div className="space-y-2">
             <Skeleton className="h-4 w-16" />
             <Skeleton className="h-24 w-full" />
           </div>
@@ -190,7 +195,9 @@ function AdvancedForm() {
               <Label htmlFor="name">Name</Label>
               <Input id="name" {...register("name")} />
               {errors.name && (
-                <p className="text-xs text-destructive">{errors.name.message}</p>
+                <p className="text-xs text-destructive">
+                  {errors.name.message}
+                </p>
               )}
             </div>
             <div className="space-y-2">
@@ -213,131 +220,158 @@ function AdvancedForm() {
           </div>
 
           {/* Textarea */}
-           <div className="space-y-2">
+          <div className="space-y-2">
             <Label htmlFor="bio">Bio</Label>
-            <Textarea id="bio" {...register("bio")} placeholder="Tell us a little about yourself" />
+            <Textarea
+              id="bio"
+              {...register("bio")}
+              placeholder="Tell us a little about yourself"
+            />
             {errors.bio && (
               <p className="text-xs text-destructive">{errors.bio.message}</p>
             )}
           </div>
-          
+
           <div className="grid md:grid-cols-2 gap-6">
             {/* Select Dropdown */}
             <div className="space-y-2">
-                <Label htmlFor="role">Role</Label>
-                <Controller
-                  name="role"
-                  control={control}
-                  render={({ field }) => (
-                    <Select onValueChange={field.onChange} value={field.value}>
-                      <SelectTrigger id="role">
-                        <SelectValue placeholder="Select a role" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="user">User</SelectItem>
-                        <SelectItem value="editor">Editor</SelectItem>
-                        <SelectItem value="admin">Admin</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  )}
-                />
-                {errors.role && (
-                  <p className="text-xs text-destructive">{errors.role.message}</p>
+              <Label htmlFor="role">Role</Label>
+              <Controller
+                name="role"
+                control={control}
+                render={({ field }) => (
+                  <Select onValueChange={field.onChange} value={field.value}>
+                    <SelectTrigger id="role">
+                      <SelectValue placeholder="Select a role" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="user">User</SelectItem>
+                      <SelectItem value="editor">Editor</SelectItem>
+                      <SelectItem value="admin">Admin</SelectItem>
+                    </SelectContent>
+                  </Select>
                 )}
-              </div>
+              />
+              {errors.role && (
+                <p className="text-xs text-destructive">
+                  {errors.role.message}
+                </p>
+              )}
+            </div>
 
-              {/* Date Picker */}
-              <div className="space-y-2">
-                  <Label htmlFor="birthDate">Date of Birth</Label>
-                  <Controller
-                      name="birthDate"
-                      control={control}
-                      render={({ field }) => (
-                          <Popover>
-                              <PopoverTrigger asChild>
-                                  <Button
-                                  variant={"outline"}
-                                  className={cn(
-                                      "w-full justify-start text-left font-normal",
-                                      !field.value && "text-muted-foreground"
-                                  )}
-                                  >
-                                  <CalendarIcon className="mr-2 h-4 w-4" />
-                                  {field.value ? format(field.value, "PPP") : <span>Pick a date</span>}
-                                  </Button>
-                              </PopoverTrigger>
-                              <PopoverContent className="w-auto p-0">
-                                  <Calendar
-                                  mode="single"
-                                  selected={field.value}
-                                  onSelect={field.onChange}
-                                  initialFocus
-                                  />
-                              </PopoverContent>
-                          </Popover>
-                      )}
-                  />
-                  {errors.birthDate && (
-                      <p className="text-xs text-destructive">{errors.birthDate.message}</p>
-                  )}
-              </div>
-          </div>
-            
-
-            {/* Radio Group */}
+            {/* Date Picker */}
             <div className="space-y-2">
-                <Label>Notification Type</Label>
-                <Controller
-                    name="notificationType"
-                    control={control}
-                    render={({field}) => (
-                        <RadioGroup onValueChange={field.onChange} value={field.value} className="flex gap-4 pt-2">
-                            <div className="flex items-center space-x-2">
-                                <RadioGroupItem value="email" id="r-email" />
-                                <Label htmlFor="r-email">Email</Label>
-                            </div>
-                              <div className="flex items-center space-x-2">
-                                <RadioGroupItem value="sms" id="r-sms" />
-                                <Label htmlFor="r-sms">SMS</Label>
-                            </div>
-                              <div className="flex items-center space-x-2">
-                                <RadioGroupItem value="none" id="r-none" />
-                                <Label htmlFor="r-none">None</Label>
-                            </div>
-                        </RadioGroup>
-                    )}
-                />
-                  {errors.notificationType && (
-                    <p className="text-xs text-destructive">{errors.notificationType.message}</p>
+              <Label htmlFor="birthDate">Date of Birth</Label>
+              <Controller
+                name="birthDate"
+                control={control}
+                render={({ field }) => (
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant={"outline"}
+                        className={cn(
+                          "w-full justify-start text-left font-normal",
+                          !field.value && "text-muted-foreground"
+                        )}
+                      >
+                        <CalendarIcon className="mr-2 h-4 w-4" />
+                        {field.value ? (
+                          format(field.value, "PPP")
+                        ) : (
+                          <span>Pick a date</span>
+                        )}
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0">
+                      <Calendar
+                        mode="single"
+                        selected={field.value}
+                        onSelect={field.onChange}
+                        initialFocus
+                      />
+                    </PopoverContent>
+                  </Popover>
                 )}
+              />
+              {errors.birthDate && (
+                <p className="text-xs text-destructive">
+                  {errors.birthDate.message}
+                </p>
+              )}
             </div>
+          </div>
 
-            {/* Checkbox and Switch */}
-            <div className="flex flex-wrap items-center gap-8 pt-2">
+          {/* Radio Group */}
+          <div className="space-y-2">
+            <Label>Notification Type</Label>
+            <Controller
+              name="notificationType"
+              control={control}
+              render={({ field }) => (
+                <RadioGroup
+                  onValueChange={field.onChange}
+                  value={field.value}
+                  className="flex gap-4 pt-2"
+                >
                   <div className="flex items-center space-x-2">
-                    <Controller
-                        name="newsletter"
-                        control={control}
-                        render={({field}) => (
-                            <Checkbox id="newsletter" checked={field.value} onCheckedChange={field.onChange} />
-                        )}
-                    />
-                    <Label htmlFor="newsletter" className="font-normal leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                        Subscribe to newsletter
-                    </Label>
-                </div>
+                    <RadioGroupItem value="email" id="r-email" />
+                    <Label htmlFor="r-email">Email</Label>
+                  </div>
                   <div className="flex items-center space-x-2">
-                      <Controller
-                        name="enableDarkMode"
-                        control={control}
-                        render={({field}) => (
-                            <Switch id="enableDarkMode" checked={field.value} onCheckedChange={field.onChange} />
-                        )}
-                    />
-                    <Label htmlFor="enableDarkMode">Enable Dark Mode</Label>
-                </div>
+                    <RadioGroupItem value="sms" id="r-sms" />
+                    <Label htmlFor="r-sms">SMS</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="none" id="r-none" />
+                    <Label htmlFor="r-none">None</Label>
+                  </div>
+                </RadioGroup>
+              )}
+            />
+            {errors.notificationType && (
+              <p className="text-xs text-destructive">
+                {errors.notificationType.message}
+              </p>
+            )}
+          </div>
+
+          {/* Checkbox and Switch */}
+          <div className="flex flex-wrap items-center gap-8 pt-2">
+            <div className="flex items-center space-x-2">
+              <Controller
+                name="newsletter"
+                control={control}
+                render={({ field }) => (
+                  <Checkbox
+                    id="newsletter"
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
+                )}
+              />
+              <Label
+                htmlFor="newsletter"
+                className="font-normal leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              >
+                Subscribe to newsletter
+              </Label>
             </div>
-
+            <div className="flex items-center space-x-2">
+              <Controller
+                name="enableDarkMode"
+                control={control}
+                render={({ field }) => (
+                  <Switch
+                    id="enableDarkMode"
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
+                )}
+              />
+              <Label htmlFor="enableDarkMode">Enable Dark Mode</Label>
+            </div>
+          </div>
         </CardContent>
         <CardFooter>
           <Button type="submit" className="w-full" disabled={isSubmitting}>
@@ -353,14 +387,11 @@ function AdvancedForm() {
 }
 
 // Create a client for react-query
-const queryClient = new QueryClient();
 
 export default function FormPage() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <div className="w-full">
-        <AdvancedForm />
-      </div>
-    </QueryClientProvider>
+    <div className="w-full">
+      <AdvancedForm />
+    </div>
   );
 }
