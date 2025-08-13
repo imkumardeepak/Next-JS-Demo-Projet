@@ -108,44 +108,46 @@ export function DataTable<TData extends {id: string}, TValue>({
            <DataTableToolbar table={table} searchColumn={searchColumn}>
              {children}
            </DataTableToolbar>
-          <DndContext
-            sensors={sensors}
-            collisionDetection={closestCenter}
-            onDragEnd={handleDragEnd}
-          >
-            <div className="relative w-full overflow-auto">
-                <Table className="rounded-md border">
-                <TableHeader>
-                    {table.getHeaderGroups().map((headerGroup) => (
-                    <TableRow key={headerGroup.id}>
-                        {headerGroup.headers.map((header) => {
-                        return (
-                            <TableHead key={header.id}>
-                            {header.isPlaceholder
-                                ? null
-                                : flexRender(
-                                    header.column.columnDef.header,
-                                    header.getContext()
-                                )}
-                            </TableHead>
-                        );
-                        })}
-                    </TableRow>
-                    ))}
-                </TableHeader>
-                <TableBody>
-                    <SortableContext
-                    items={data.map((item) => item.id)}
-                    strategy={verticalListSortingStrategy}
-                    >
-                    {table.getRowModel().rows.map((row) => (
-                        <DraggableRow key={row.id} row={row} />
-                    ))}
-                    </SortableContext>
-                </TableBody>
-                </Table>
+            <div className="rounded-md border">
+              <div className="relative w-full overflow-auto">
+                <DndContext
+                  sensors={sensors}
+                  collisionDetection={closestCenter}
+                  onDragEnd={handleDragEnd}
+                >
+                      <Table>
+                      <TableHeader>
+                          {table.getHeaderGroups().map((headerGroup) => (
+                          <TableRow key={headerGroup.id}>
+                              {headerGroup.headers.map((header) => {
+                              return (
+                                  <TableHead key={header.id}>
+                                  {header.isPlaceholder
+                                      ? null
+                                      : flexRender(
+                                          header.column.columnDef.header,
+                                          header.getContext()
+                                      )}
+                                  </TableHead>
+                              );
+                              })}
+                          </TableRow>
+                          ))}
+                      </TableHeader>
+                      <TableBody>
+                          <SortableContext
+                          items={data.map((item) => item.id)}
+                          strategy={verticalListSortingStrategy}
+                          >
+                          {table.getRowModel().rows.map((row) => (
+                              <DraggableRow key={row.id} row={row} />
+                          ))}
+                          </SortableContext>
+                      </TableBody>
+                      </Table>
+                </DndContext>
+              </div>
             </div>
-          </DndContext>
           <DataTablePagination table={table} />
         </CardContent>
       </Card>
