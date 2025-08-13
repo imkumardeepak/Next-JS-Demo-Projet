@@ -68,16 +68,16 @@ export function LoginForm() {
   return (
     <Card className="w-full max-w-sm">
       <CardHeader className="items-center text-center">
-        <div className="flex items-center justify-center gap-2 mb-4">
+        <div className="mb-4 flex h-24 w-24 items-center justify-center">
           <Image
             src="/logofab.png"
             alt="Avyyan Knitfab Logo"
-            width={40}
-            height={40}
+            width={80}
+            height={80}
             className="h-auto w-auto"
           />
-          <CardTitle>Avyyan Knitfab</CardTitle>
         </div>
+        <CardTitle>Avyyan Knitfab</CardTitle>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit(onSubmit)}>
