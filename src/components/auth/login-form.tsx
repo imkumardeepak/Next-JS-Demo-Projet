@@ -42,7 +42,7 @@ export function LoginForm() {
         toast({
           title: "Logged In Successfully",
           description: "Redirecting to your dashboard...",
-          variant: "default",
+          variant: "success",
         });
         router.push("/dashboard");
       } else {
