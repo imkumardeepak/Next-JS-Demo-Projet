@@ -1,3 +1,4 @@
+
 "use client";
 
 import * as React from "react";
@@ -67,7 +68,7 @@ export function LoginForm() {
   return (
     <Card>
       <CardHeader className="items-center text-center">
-        <div className="mb-4 flex h-24 w-24 items-center justify-center rounded-full bg-primary/10 p-2">
+        <div className="mb-4 flex h-24 w-24 items-center justify-center">
             <Image
             src="/logo.png"
             alt="TransitPass Logo"
