@@ -1,3 +1,4 @@
+
 "use client";
 
 import * as React from "react";
@@ -14,7 +15,7 @@ import Link from "next/link";
 import { Icons } from "@/components/icons";
 
 const loginSchema = z.object({
-  email: z.string().email({ message: "Please enter a valid email address." }),
+  username: z.string().min(1, { message: "Username is required." }),
   password: z.string().min(1, { message: "Password is required." }),
 });
 
@@ -34,16 +35,23 @@ export function LoginForm() {
 
   async function onSubmit(data: FormData) {
     setIsLoading(true);
-    console.log(data); // In a real app, you'd call your auth provider here.
 
-    // Simulate API call
+    // Simulate API call and check for dummy credentials
     setTimeout(() => {
+      if (data.username === "admin" && data.password === "admin") {
+        toast({
+          title: "Logged In Successfully",
+          description: "Redirecting to your dashboard...",
+        });
+        router.push("/dashboard");
+      } else {
+        toast({
+          variant: "destructive",
+          title: "Invalid Credentials",
+          description: "Please check your username and password.",
+        });
+      }
       setIsLoading(false);
-      toast({
-        title: "Logged In Successfully",
-        description: "Redirecting to your dashboard...",
-      });
-      router.push("/dashboard");
     }, 1000);
   }
 
@@ -54,27 +62,27 @@ export function LoginForm() {
           Welcome Back
         </h1>
         <p className="text-sm text-muted-foreground">
-          Enter your email and password to access your account
+          Enter your username and password to access your account
         </p>
       </div>
       <div className={cn("grid gap-6")}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid gap-4">
             <div className="grid gap-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="username">Username</Label>
               <Input
-                id="email"
-                placeholder="name@example.com"
-                type="email"
+                id="username"
+                placeholder="admin"
+                type="text"
                 autoCapitalize="none"
-                autoComplete="email"
+                autoComplete="username"
                 autoCorrect="off"
                 disabled={isLoading}
-                {...register("email")}
+                {...register("username")}
               />
-              {errors?.email && (
+              {errors?.username && (
                 <p className="px-1 text-xs text-destructive">
-                  {errors.email.message}
+                  {errors.username.message}
                 </p>
               )}
             </div>
@@ -103,12 +111,7 @@ export function LoginForm() {
         </form>
       </div>
        <p className="px-8 text-center text-sm text-muted-foreground">
-          <Link
-            href="/signup"
-            className="underline underline-offset-4 hover:text-primary"
-          >
-            Don&apos;t have an account? Sign Up
-          </Link>
+          Use username: <span className="font-semibold">admin</span> & password: <span className="font-semibold">admin</span>
         </p>
     </>
   );

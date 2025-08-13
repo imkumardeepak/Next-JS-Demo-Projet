@@ -1,5 +1,7 @@
+
 import Link from "next/link";
-import { SignupForm } from "@/components/auth/signup-form";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Icons } from "@/components/icons";
 import { Footer } from "@/components/footer";
 import Image from "next/image";
@@ -10,7 +12,21 @@ export default function SignupPage() {
       <div className="flex flex-col h-full">
         <div className="flex-1 flex items-center justify-center p-4 sm:p-8">
             <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
-            <SignupForm />
+             <Card>
+                <CardHeader className="text-center">
+                    <CardTitle>Sign Up Disabled</CardTitle>
+                    <CardDescription>
+                        Account creation is currently disabled. Please use the provided credentials to log in.
+                    </CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <Link href="/" passHref>
+                        <Button className="w-full">
+                            Back to Login
+                        </Button>
+                    </Link>
+                </CardContent>
+             </Card>
             </div>
         </div>
         <Footer />
