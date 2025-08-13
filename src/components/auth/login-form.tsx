@@ -67,7 +67,7 @@ export function LoginForm() {
   return (
     <Card className="w-full max-w-sm">
       <CardHeader className="items-center text-center">
-        <div className="mb-4 flex h-24 w-24 items-center justify-center">
+        <div className="mb-4">
           <Image
             src="/logofab.png"
             alt="TransitPass Logo"
@@ -76,7 +76,7 @@ export function LoginForm() {
             className="h-auto w-auto"
           />
         </div>
-        <CardTitle>Welcome Back</CardTitle>
+        <CardTitle>Avyyan kNITFAB</CardTitle>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit(onSubmit)}>
