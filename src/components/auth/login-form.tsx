@@ -1,4 +1,3 @@
-
 "use client";
 
 import * as React from "react";
@@ -42,6 +41,7 @@ export function LoginForm() {
         toast({
           title: "Logged In Successfully",
           description: "Redirecting to your dashboard...",
+          variant: "default",
         });
         router.push("/dashboard");
       } else {
@@ -58,9 +58,7 @@ export function LoginForm() {
   return (
     <>
       <div className="flex flex-col space-y-2 text-center">
-        <h1 className="text-2xl font-semibold tracking-tight">
-          Welcome Back
-        </h1>
+        <h1 className="text-2xl font-semibold tracking-tight">Welcome Back</h1>
         <p className="text-sm text-muted-foreground">
           Enter your username and password to access your account
         </p>
@@ -110,9 +108,10 @@ export function LoginForm() {
           </div>
         </form>
       </div>
-       <p className="px-8 text-center text-sm text-muted-foreground">
-          Use username: <span className="font-semibold">admin</span> & password: <span className="font-semibold">admin</span>
-        </p>
+      <p className="px-8 text-center text-sm text-muted-foreground">
+        Use username: <span className="font-semibold">admin</span> & password:{" "}
+        <span className="font-semibold">admin</span>
+      </p>
     </>
   );
 }
