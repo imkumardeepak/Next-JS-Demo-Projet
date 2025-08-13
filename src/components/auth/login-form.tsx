@@ -13,6 +13,14 @@ import { toast } from "@/hooks/use-toast";
 import Link from "next/link";
 import { Icons } from "@/components/icons";
 import Image from "next/image";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 const loginSchema = z.object({
   username: z.string().min(1, { message: "Username is required." }),
@@ -57,18 +65,23 @@ export function LoginForm() {
   }
 
   return (
-    <>
-      <div className="flex flex-col space-y-2 text-center">
-        <Image
-          src="/logofab.png"
-          alt="TransitPass Logo"
-          width={180}
-          height={100}
-          className="mx-auto"
-        />
-        <h1 className="text-2xl font-semibold tracking-tight">Welcome Back</h1>
-      </div>
-      <div className={cn("grid gap-6")}>
+    <Card>
+      <CardHeader className="items-center text-center">
+        <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 p-2">
+            <Image
+            src="/logofab.png"
+            alt="TransitPass Logo"
+            width={120}
+            height={80}
+            className="h-auto w-auto"
+            />
+        </div>
+        <CardTitle>Welcome Back</CardTitle>
+        <CardDescription>
+          Enter your credentials to access your account.
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid gap-4">
             <div className="grid gap-2">
@@ -104,7 +117,7 @@ export function LoginForm() {
                 </p>
               )}
             </div>
-            <Button disabled={isLoading}>
+            <Button disabled={isLoading} type="submit" className="w-full">
               {isLoading && (
                 <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
               )}
@@ -112,11 +125,13 @@ export function LoginForm() {
             </Button>
           </div>
         </form>
-      </div>
-      <p className="px-8 text-center text-sm text-muted-foreground">
-        Use username: <span className="font-semibold">admin</span> & password:{" "}
-        <span className="font-semibold">admin</span>
-      </p>
-    </>
+      </CardContent>
+      <CardFooter className="flex-col gap-2 text-sm">
+        <p className="text-center text-sm text-muted-foreground">
+          Use username: <span className="font-semibold">admin</span> &
+          password: <span className="font-semibold">admin</span>
+        </p>
+      </CardFooter>
+    </Card>
   );
 }
