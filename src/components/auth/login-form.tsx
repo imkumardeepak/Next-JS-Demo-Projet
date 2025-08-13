@@ -60,16 +60,13 @@ export function LoginForm() {
     <>
       <div className="flex flex-col space-y-2 text-center">
         <Image
-          src="/logo.jpg"
+          src="/logofab.png"
           alt="TransitPass Logo"
-          width={80}
-          height={80}
+          width={180}
+          height={100}
           className="mx-auto"
         />
         <h1 className="text-2xl font-semibold tracking-tight">Welcome Back</h1>
-        <p className="text-sm text-muted-foreground">
-          Enter your username and password to access your account
-        </p>
       </div>
       <div className={cn("grid gap-6")}>
         <form onSubmit={handleSubmit(onSubmit)}>
