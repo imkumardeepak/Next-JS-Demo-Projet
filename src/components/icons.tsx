@@ -1,7 +1,7 @@
-import { Ticket, Loader2 } from 'lucide-react';
+import { Ticket, Loader2, SaladIcon } from "lucide-react";
 
 export const Icons = {
-  logo: Ticket,
+  logo: SaladIcon,
   spinner: Loader2,
 };
 

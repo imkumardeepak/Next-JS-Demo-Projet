@@ -1,4 +1,3 @@
-
 "use client";
 
 import * as React from "react";
@@ -69,18 +68,15 @@ export function LoginForm() {
     <Card>
       <CardHeader className="items-center text-center">
         <div className="mb-4 flex h-24 w-24 items-center justify-center">
-            <Image
-            src="/logo.png"
+          <Image
+            src="/logofab.png"
             alt="TransitPass Logo"
-            width={120}
-            height={120}
+            width={180}
+            height={160}
             className="h-auto w-auto"
-            />
+          />
         </div>
         <CardTitle>Welcome Back</CardTitle>
-        <CardDescription>
-          Enter your credentials to access your account.
-        </CardDescription>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -129,8 +125,8 @@ export function LoginForm() {
       </CardContent>
       <CardFooter className="flex-col gap-2 text-sm">
         <p className="text-center text-sm text-muted-foreground">
-          Use username: <span className="font-semibold">admin</span> &
-          password: <span className="font-semibold">admin</span>
+          Use username: <span className="font-semibold">admin</span> & password:{" "}
+          <span className="font-semibold">admin</span>
         </p>
       </CardFooter>
     </Card>
