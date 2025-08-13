@@ -1,3 +1,4 @@
+
 "use client";
 
 import * as React from "react";
@@ -67,16 +68,16 @@ export function LoginForm() {
   return (
     <Card className="w-full max-w-sm">
       <CardHeader className="items-center text-center">
-        <div className="mb-4">
+        <div className="flex items-center justify-center gap-2 mb-4">
           <Image
             src="/logofab.png"
-            alt="TransitPass Logo"
-            width={70}
-            height={60}
+            alt="Avyyan Knitfab Logo"
+            width={40}
+            height={40}
             className="h-auto w-auto"
           />
+          <CardTitle>Avyyan Knitfab</CardTitle>
         </div>
-        <CardTitle>Avyyan Knitfab</CardTitle>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit(onSubmit)}>
