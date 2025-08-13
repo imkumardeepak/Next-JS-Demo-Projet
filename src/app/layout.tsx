@@ -17,6 +17,7 @@ export const metadata: Metadata = {
   title: "Avyyan Knitfab",
   description:
     "Avyyan Knitfab is a leading manufacturer of high-quality knitwear products for the fashion industry. Our company specializes in producing a wide range of knitwear items such as sweaters, cardigans, and knitted accessories that are known for their exceptional quality, durability, and stylish designs.",
+  icons: "/logofab.png",
 };
 
 export default function RootLayout({
