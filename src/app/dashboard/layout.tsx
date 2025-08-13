@@ -1,3 +1,4 @@
+
 "use client";
 
 import * as React from "react";
@@ -55,6 +56,126 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Footer } from "@/components/footer";
 
+const navItems = [
+  {
+    href: "/dashboard",
+    icon: Home,
+    label: "Dashboard",
+    tooltip: "Dashboard",
+  },
+  {
+    href: "/dashboard/tasks",
+    icon: ListTodo,
+    label: "Tasks",
+    tooltip: "Tasks",
+  },
+  {
+    href: "/dashboard/form",
+    icon: FileText,
+    label: "Form",
+    tooltip: "Form",
+  },
+  {
+    href: "/dashboard/history",
+    icon: History,
+    label: "Pass History",
+    tooltip: "Pass History",
+  },
+  {
+    href: "/dashboard/scan",
+    icon: ScanLine,
+    label: "Scan Pass",
+    tooltip: "Scan Pass",
+  },
+  {
+    label: "Settings",
+    icon: Settings,
+    tooltip: "Settings",
+    subItems: [
+      {
+        href: "/dashboard/settings/profile",
+        icon: UserCog,
+        label: "Profile",
+      },
+      {
+        href: "/dashboard/settings/billing",
+        icon: CreditCard,
+        label: "Billing",
+      },
+    ],
+  },
+];
+
+const NavMenu = () => {
+  const pathname = usePathname();
+  const [openSettings, setOpenSettings] = React.useState(false);
+
+  React.useEffect(() => {
+    // Open settings if a sub-item is active
+    if (navItems.some(item => item.subItems?.some(sub => sub.href === pathname))) {
+      setOpenSettings(true);
+    }
+  }, [pathname]);
+
+  return (
+    <SidebarMenu>
+      {navItems.map((item, index) =>
+        item.subItems ? (
+          <SidebarMenuItem key={index}>
+            <Collapsible open={openSettings} onOpenChange={setOpenSettings}>
+              <CollapsibleTrigger asChild>
+                <SidebarMenuButton
+                  className="justify-between"
+                  tooltip={item.tooltip}
+                >
+                  <div className="flex items-center gap-2">
+                    <item.icon />
+                    <span>{item.label}</span>
+                  </div>
+                  <ChevronDown
+                    className={`h-4 w-4 transition-transform ${
+                      openSettings ? "rotate-180" : ""
+                    }`}
+                  />
+                </SidebarMenuButton>
+              </CollapsibleTrigger>
+              <CollapsibleContent>
+                <SidebarMenuSub>
+                  {item.subItems.map((subItem, subIndex) => (
+                    <SidebarMenuSubItem key={subIndex}>
+                      <Link href={subItem.href} passHref legacyBehavior>
+                        <SidebarMenuSubButton
+                          isActive={pathname === subItem.href}
+                        >
+                          <subItem.icon />
+                          <span>{subItem.label}</span>
+                        </SidebarMenuSubButton>
+                      </Link>
+                    </SidebarMenuSubItem>
+                  ))}
+                </SidebarMenuSub>
+              </CollapsibleContent>
+            </Collapsible>
+          </SidebarMenuItem>
+        ) : (
+          <SidebarMenuItem key={index}>
+            <Link href={item.href!} passHref legacyBehavior>
+              <SidebarMenuButton
+                isActive={pathname === item.href}
+                tooltip={item.tooltip}
+              >
+                <item.icon />
+                <span>{item.label}</span>
+              </SidebarMenuButton>
+            </Link>
+          </SidebarMenuItem>
+        )
+      )}
+    </SidebarMenu>
+  );
+};
+
+
 export default function DashboardLayout({
   children,
 }: {
@@ -62,7 +183,6 @@ export default function DashboardLayout({
 }) {
   const pathname = usePathname();
   const router = useRouter();
-  const [isSettingsOpen, setIsSettingsOpen] = React.useState(false);
 
   const handleLogout = () => {
     // In a real app, you'd clear session/token here
@@ -85,120 +205,7 @@ export default function DashboardLayout({
           </div>
         </SidebarHeader>
         <SidebarContent>
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <Link href="/dashboard" passHref legacyBehavior>
-                <SidebarMenuButton
-                  isActive={pathname === "/dashboard"}
-                  tooltip="Dashboard"
-                >
-                  <Home />
-                  <span>Dashboard</span>
-                </SidebarMenuButton>
-              </Link>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <Link href="/dashboard/tasks" passHref legacyBehavior>
-                <SidebarMenuButton
-                  isActive={pathname === "/dashboard/tasks"}
-                  tooltip="Tasks"
-                >
-                  <ListTodo />
-                  <span>Tasks</span>
-                </SidebarMenuButton>
-              </Link>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <Link href="/dashboard/form" passHref legacyBehavior>
-                <SidebarMenuButton
-                  isActive={pathname === "/dashboard/form"}
-                  tooltip="Form"
-                >
-                  <FileText />
-                  <span>Form</span>
-                </SidebarMenuButton>
-              </Link>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <Link href="/dashboard/history" passHref legacyBehavior>
-                <SidebarMenuButton
-                  isActive={pathname === "/dashboard/history"}
-                  tooltip="Pass History"
-                >
-                  <History />
-                  <span>Pass History</span>
-                </SidebarMenuButton>
-              </Link>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <Link href="/dashboard/scan" passHref legacyBehavior>
-                <SidebarMenuButton
-                  isActive={pathname === "/dashboard/scan"}
-                  tooltip="Scan Pass"
-                >
-                  <ScanLine />
-                  <span>Scan Pass</span>
-                </SidebarMenuButton>
-              </Link>
-            </SidebarMenuItem>
-
-            {/* Collapsible Settings Menu */}
-            <SidebarMenuItem>
-              <Collapsible
-                open={isSettingsOpen}
-                onOpenChange={setIsSettingsOpen}
-              >
-                <CollapsibleTrigger asChild>
-                  <SidebarMenuButton
-                    className="justify-between"
-                    tooltip="Settings"
-                  >
-                    <div className="flex items-center gap-2">
-                      <Settings />
-                      <span>Settings</span>
-                    </div>
-                    <ChevronDown
-                      className={`h-4 w-4 transition-transform ${
-                        isSettingsOpen ? "rotate-180" : ""
-                      }`}
-                    />
-                  </SidebarMenuButton>
-                </CollapsibleTrigger>
-                <CollapsibleContent>
-                  <SidebarMenuSub>
-                    <SidebarMenuSubItem>
-                      <Link
-                        href="/dashboard/settings/profile"
-                        passHref
-                        legacyBehavior
-                      >
-                        <SidebarMenuSubButton
-                          isActive={pathname === "/dashboard/settings/profile"}
-                        >
-                          <UserCog />
-                          <span>Profile</span>
-                        </SidebarMenuSubButton>
-                      </Link>
-                    </SidebarMenuSubItem>
-                    <SidebarMenuSubItem>
-                      <Link
-                        href="/dashboard/settings/billing"
-                        passHref
-                        legacyBehavior
-                      >
-                        <SidebarMenuSubButton
-                          isActive={pathname === "/dashboard/settings/billing"}
-                        >
-                          <CreditCard />
-                          <span>Billing</span>
-                        </SidebarMenuSubButton>
-                      </Link>
-                    </SidebarMenuSubItem>
-                  </SidebarMenuSub>
-                </CollapsibleContent>
-              </Collapsible>
-            </SidebarMenuItem>
-          </SidebarMenu>
+          <NavMenu />
         </SidebarContent>
         <SidebarFooter>
           <SidebarGroup>
