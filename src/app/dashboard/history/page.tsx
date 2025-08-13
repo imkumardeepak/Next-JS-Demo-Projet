@@ -7,7 +7,13 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
 
 const passHistory = [
   {
@@ -54,10 +60,12 @@ const passHistory = [
 
 export default function HistoryPage() {
   return (
-    <Card>
-      <CardHeader>
+    <Card className="w-full max-w-[80rem] mx-auto">
+      <CardHeader className="border-b">
         <CardTitle>Pass History</CardTitle>
-        <CardDescription>A record of all your past pass purchases.</CardDescription>
+        <CardDescription>
+          A record of all your past pass purchases.
+        </CardDescription>
       </CardHeader>
       <CardContent>
         <div className="overflow-x-auto">
@@ -65,8 +73,12 @@ export default function HistoryPage() {
             <TableHeader>
               <TableRow>
                 <TableHead>Pass Type</TableHead>
-                <TableHead className="hidden sm:table-cell">Purchase Date</TableHead>
-                <TableHead className="hidden md:table-cell">Expiry Date</TableHead>
+                <TableHead className="hidden sm:table-cell">
+                  Purchase Date
+                </TableHead>
+                <TableHead className="hidden md:table-cell">
+                  Expiry Date
+                </TableHead>
                 <TableHead className="text-right">Price</TableHead>
                 <TableHead className="text-center">Status</TableHead>
               </TableRow>
@@ -75,11 +87,23 @@ export default function HistoryPage() {
               {passHistory.map((pass) => (
                 <TableRow key={pass.id}>
                   <TableCell className="font-medium">{pass.type}</TableCell>
-                  <TableCell className="hidden sm:table-cell">{pass.purchaseDate}</TableCell>
-                  <TableCell className="hidden md:table-cell">{pass.expiryDate}</TableCell>
-                  <TableCell className="text-right">${pass.price.toFixed(2)}</TableCell>
+                  <TableCell className="hidden sm:table-cell">
+                    {pass.purchaseDate}
+                  </TableCell>
+                  <TableCell className="hidden md:table-cell">
+                    {pass.expiryDate}
+                  </TableCell>
+                  <TableCell className="text-right">
+                    ${pass.price.toFixed(2)}
+                  </TableCell>
                   <TableCell className="text-center">
-                    <Badge variant={pass.status === 'Active' ? 'default' : 'destructive'}>{pass.status}</Badge>
+                    <Badge
+                      variant={
+                        pass.status === "Active" ? "default" : "destructive"
+                      }
+                    >
+                      {pass.status}
+                    </Badge>
                   </TableCell>
                 </TableRow>
               ))}

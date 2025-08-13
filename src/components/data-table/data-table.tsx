@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState } from "react";
@@ -37,21 +36,27 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+} from "@/components/ui/card";
 import { DataTableToolbar } from "./data-table-toolbar";
 import { DataTablePagination } from "./data-table-pagination";
 
 interface DataTableProps<TData, TValue> {
-    columns: ColumnDef<TData, TValue>[];
-    data: TData[];
-    setData: React.Dispatch<React.SetStateAction<TData[]>>;
-    pageTitle: string;
-    pageDescription: string;
-    searchColumn: string;
-    children?: React.ReactNode;
+  columns: ColumnDef<TData, TValue>[];
+  data: TData[];
+  setData: React.Dispatch<React.SetStateAction<TData[]>>;
+  pageTitle: string;
+  pageDescription: string;
+  searchColumn: string;
+  children?: React.ReactNode;
 }
 
-export function DataTable<TData extends {id: string}, TValue>({
+export function DataTable<TData extends { id: string }, TValue>({
   columns,
   data,
   setData,
@@ -61,9 +66,10 @@ export function DataTable<TData extends {id: string}, TValue>({
   children,
 }: DataTableProps<TData, TValue>) {
   const [rowSelection, setRowSelection] = React.useState({});
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    []
+  );
   const [sorting, setSorting] = React.useState<SortingState>([]);
-
 
   const table = useReactTable({
     data,
@@ -97,59 +103,57 @@ export function DataTable<TData extends {id: string}, TValue>({
   const sensors = useSensors(useSensor(MouseSensor), useSensor(TouchSensor));
 
   return (
-      <Card>
-        <CardHeader>
-          <CardTitle>{pageTitle}</CardTitle>
-          <CardDescription>
-            {pageDescription}
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-           <DataTableToolbar table={table} searchColumn={searchColumn}>
-             {children}
-           </DataTableToolbar>
-            <div className="rounded-md border">
-              <div className="relative w-full overflow-auto">
-                <DndContext
-                  sensors={sensors}
-                  collisionDetection={closestCenter}
-                  onDragEnd={handleDragEnd}
-                >
-                      <Table>
-                      <TableHeader>
-                          {table.getHeaderGroups().map((headerGroup) => (
-                          <TableRow key={headerGroup.id}>
-                              {headerGroup.headers.map((header) => {
-                              return (
-                                  <TableHead key={header.id}>
-                                  {header.isPlaceholder
-                                      ? null
-                                      : flexRender(
-                                          header.column.columnDef.header,
-                                          header.getContext()
-                                      )}
-                                  </TableHead>
-                              );
-                              })}
-                          </TableRow>
-                          ))}
-                      </TableHeader>
-                      <TableBody>
-                          <SortableContext
-                          items={data.map((item) => item.id)}
-                          strategy={verticalListSortingStrategy}
-                          >
-                          {table.getRowModel().rows.map((row) => (
-                              <DraggableRow key={row.id} row={row} />
-                          ))}
-                          </SortableContext>
-                      </TableBody>
-                      </Table>
-                </DndContext>
-              </div>
-            </div>
-          <DataTablePagination table={table} />
-        </CardContent>
-      </Card>
+    <Card>
+      <CardHeader className="border-b">
+        <CardTitle>{pageTitle}</CardTitle>
+        <CardDescription>{pageDescription}</CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        <DataTableToolbar table={table} searchColumn={searchColumn}>
+          {children}
+        </DataTableToolbar>
+        <div className="rounded-md border">
+          <div className="relative w-full overflow-auto">
+            <DndContext
+              sensors={sensors}
+              collisionDetection={closestCenter}
+              onDragEnd={handleDragEnd}
+            >
+              <Table>
+                <TableHeader>
+                  {table.getHeaderGroups().map((headerGroup) => (
+                    <TableRow key={headerGroup.id}>
+                      {headerGroup.headers.map((header) => {
+                        return (
+                          <TableHead key={header.id}>
+                            {header.isPlaceholder
+                              ? null
+                              : flexRender(
+                                  header.column.columnDef.header,
+                                  header.getContext()
+                                )}
+                          </TableHead>
+                        );
+                      })}
+                    </TableRow>
+                  ))}
+                </TableHeader>
+                <TableBody>
+                  <SortableContext
+                    items={data.map((item) => item.id)}
+                    strategy={verticalListSortingStrategy}
+                  >
+                    {table.getRowModel().rows.map((row) => (
+                      <DraggableRow key={row.id} row={row} />
+                    ))}
+                  </SortableContext>
+                </TableBody>
+              </Table>
+            </DndContext>
+          </div>
+        </div>
+        <DataTablePagination table={table} />
+      </CardContent>
+    </Card>
   );
 }
