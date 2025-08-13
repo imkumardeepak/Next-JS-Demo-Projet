@@ -3,6 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import Image from "next/image";
 import {
   History,
   Home,
@@ -73,7 +74,13 @@ export default function DashboardLayout({
       <Sidebar>
         <SidebarHeader className="p-4">
           <div className="flex items-center gap-2">
-            <Icons.logo className="size-8 text-primary" />
+            <Image
+              src="/logofab.png"
+              alt="TransitPass Logo"
+              width={32}
+              height={32}
+              className="size-8"
+            />
             <span className="text-lg font-semibold">Avyyan Knitfab</span>
           </div>
         </SidebarHeader>
