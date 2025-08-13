@@ -113,38 +113,36 @@ export function DataTable<TData extends {id: string}, TValue>({
             collisionDetection={closestCenter}
             onDragEnd={handleDragEnd}
           >
-            <div className="overflow-x-auto rounded-md border">
-              <Table>
-                <TableHeader>
-                  {table.getHeaderGroups().map((headerGroup) => (
-                    <TableRow key={headerGroup.id}>
-                      {headerGroup.headers.map((header) => {
-                        return (
-                          <TableHead key={header.id}>
-                            {header.isPlaceholder
-                              ? null
-                              : flexRender(
-                                  header.column.columnDef.header,
-                                  header.getContext()
-                                )}
-                          </TableHead>
-                        );
-                      })}
-                    </TableRow>
+            <Table className="rounded-md border">
+              <TableHeader>
+                {table.getHeaderGroups().map((headerGroup) => (
+                  <TableRow key={headerGroup.id}>
+                    {headerGroup.headers.map((header) => {
+                      return (
+                        <TableHead key={header.id}>
+                          {header.isPlaceholder
+                            ? null
+                            : flexRender(
+                                header.column.columnDef.header,
+                                header.getContext()
+                              )}
+                        </TableHead>
+                      );
+                    })}
+                  </TableRow>
+                ))}
+              </TableHeader>
+              <TableBody>
+                <SortableContext
+                  items={data.map((item) => item.id)}
+                  strategy={verticalListSortingStrategy}
+                >
+                  {table.getRowModel().rows.map((row) => (
+                      <DraggableRow key={row.id} row={row} />
                   ))}
-                </TableHeader>
-                <TableBody>
-                  <SortableContext
-                    items={data.map((item) => item.id)}
-                    strategy={verticalListSortingStrategy}
-                  >
-                    {table.getRowModel().rows.map((row) => (
-                       <DraggableRow key={row.id} row={row} />
-                    ))}
-                  </SortableContext>
-                </TableBody>
-              </Table>
-            </div>
+                </SortableContext>
+              </TableBody>
+            </Table>
           </DndContext>
           <DataTablePagination table={table} />
         </CardContent>
