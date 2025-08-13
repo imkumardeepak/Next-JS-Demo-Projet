@@ -71,12 +71,12 @@ export function LoginForm() {
           <Image
             src="/logofab.png"
             alt="TransitPass Logo"
-            width={180}
-            height={160}
+            width={70}
+            height={60}
             className="h-auto w-auto"
           />
         </div>
-        <CardTitle>Avyyan kNITFAB</CardTitle>
+        <CardTitle>Avyyan Knitfab</CardTitle>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -123,7 +123,7 @@ export function LoginForm() {
       </CardContent>
       <CardFooter className="flex-col gap-2 text-sm">
         <p className="text-center text-sm text-muted-foreground">
-          Don't have an account?{' '}
+          Don't have an account?{" "}
           <Link
             href="/signup"
             className="font-semibold text-primary underline-offset-4 hover:underline"
