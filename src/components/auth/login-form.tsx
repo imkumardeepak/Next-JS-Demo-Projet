@@ -58,6 +58,7 @@ export function LoginForm() {
   return (
     <>
       <div className="flex flex-col space-y-2 text-center">
+        <Icons.logo className="mx-auto h-10 w-10 text-primary" />
         <h1 className="text-2xl font-semibold tracking-tight">Welcome Back</h1>
         <p className="text-sm text-muted-foreground">
           Enter your username and password to access your account
