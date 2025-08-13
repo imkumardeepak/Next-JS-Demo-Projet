@@ -1,3 +1,4 @@
+
 "use client";
 
 import * as React from "react";
@@ -12,6 +13,7 @@ import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
 import Link from "next/link";
 import { Icons } from "@/components/icons";
+import Image from "next/image";
 
 const loginSchema = z.object({
   username: z.string().min(1, { message: "Username is required." }),
@@ -58,7 +60,7 @@ export function LoginForm() {
   return (
     <>
       <div className="flex flex-col space-y-2 text-center">
-        <Icons.logo className="mx-auto h-10 w-10 text-primary" />
+        <Image src="/logo.png" alt="TransitPass Logo" width={40} height={40} className="mx-auto" />
         <h1 className="text-2xl font-semibold tracking-tight">Welcome Back</h1>
         <p className="text-sm text-muted-foreground">
           Enter your username and password to access your account
