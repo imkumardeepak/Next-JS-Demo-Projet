@@ -67,12 +67,12 @@ export function LoginForm() {
   return (
     <Card>
       <CardHeader className="items-center text-center">
-        <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 p-2">
+        <div className="mb-4 flex h-24 w-24 items-center justify-center rounded-full bg-primary/10 p-2">
             <Image
-            src="/logofab.png"
+            src="/logo.png"
             alt="TransitPass Logo"
             width={120}
-            height={80}
+            height={120}
             className="h-auto w-auto"
             />
         </div>
