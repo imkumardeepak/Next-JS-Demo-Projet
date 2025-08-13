@@ -73,13 +73,13 @@ export default function DashboardLayout({
     <SidebarProvider>
       <Sidebar>
         <SidebarHeader className="p-4">
-          <div className="flex items-center gap-2">
+          <div className="flex flex-col items-center gap-2">
             <Image
               src="/logofab.png"
               alt="TransitPass Logo"
-              width={32}
-              height={32}
-              className="size-8"
+              width={64}
+              height={64}
+              className="size-16"
             />
             <span className="text-lg font-semibold">Avyyan Knitfab</span>
           </div>
