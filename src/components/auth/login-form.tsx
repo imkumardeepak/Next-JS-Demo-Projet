@@ -65,7 +65,7 @@ export function LoginForm() {
   }
 
   return (
-    <Card>
+    <Card className="w-full max-w-sm">
       <CardHeader className="items-center text-center">
         <div className="mb-4 flex h-24 w-24 items-center justify-center">
           <Image
