@@ -1,3 +1,4 @@
+
 "use client";
 
 import * as React from "react";
@@ -54,6 +55,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Footer } from "@/components/footer";
+import { useSession } from "@/hooks/use-session";
 
 const navItems = [
   {
@@ -185,11 +187,22 @@ export default function DashboardLayout({
 }) {
   const pathname = usePathname();
   const router = useRouter();
+  const { user, logout, isLoggedIn } = useSession();
 
   const handleLogout = () => {
-    // In a real app, you'd clear session/token here
+    logout();
     router.push("/");
   };
+  
+  React.useEffect(() => {
+    if (!isLoggedIn) {
+      router.push('/');
+    }
+  }, [isLoggedIn, router]);
+
+  if (!isLoggedIn) {
+      return null;
+  }
 
   return (
     <SidebarProvider>
@@ -223,9 +236,9 @@ export default function DashboardLayout({
                         <div className="flex items-center gap-2">
                           <Avatar className="h-6 w-6">
                             <AvatarImage src="https://placehold.co/100x100.png" />
-                            <AvatarFallback>JD</AvatarFallback>
+                            <AvatarFallback>{user?.name.charAt(0)}</AvatarFallback>
                           </Avatar>
-                          <span className="truncate">John Doe</span>
+                          <span className="truncate">{user?.name}</span>
                         </div>
                         <ChevronDown className="h-4 w-4" />
                       </div>
@@ -237,9 +250,9 @@ export default function DashboardLayout({
                     align="start"
                   >
                     <DropdownMenuLabel>
-                      <p>John Doe</p>
+                      <p>{user?.name}</p>
                       <p className="text-xs text-muted-foreground font-normal">
-                        john.doe@example.com
+                        {user?.email}
                       </p>
                     </DropdownMenuLabel>
                     <DropdownMenuSeparator />

@@ -21,6 +21,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { useSession } from "@/hooks/use-session";
 
 const loginSchema = z.object({
   username: z.string().min(1, { message: "Username is required." }),
@@ -31,6 +32,7 @@ type FormData = z.infer<typeof loginSchema>;
 
 export function LoginForm() {
   const router = useRouter();
+  const { login } = useSession();
   const [isLoading, setIsLoading] = React.useState(false);
 
   const {
@@ -47,6 +49,11 @@ export function LoginForm() {
     // Simulate API call and check for dummy credentials
     setTimeout(() => {
       if (data.username === "admin" && data.password === "admin") {
+        login({
+            id: '1',
+            name: 'Admin User',
+            email: 'admin@example.com'
+        });
         toast({
           title: "Logged In Successfully",
           description: "Redirecting to your dashboard...",
